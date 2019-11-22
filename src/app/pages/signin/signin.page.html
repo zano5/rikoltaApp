@@ -1,0 +1,35 @@
+<!-- <ion-header>
+    <ion-toolbar>
+        <ion-title>signin</ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+
+    <ion-grid style="height: 100%">
+        <ion-row justify-content-center align-items-center style="height: 75%">
+            <ion-card id="login-card">
+
+                <ion-list>
+
+                    <ion-item>
+                        <ion-label fixed color="primary">email</ion-label>
+                        <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label fixed color="primary">password</ion-label>
+                        <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+                    </ion-item>
+
+                    <ion-button color="primary" expand="full" fill="clear" (click)='logIn()'>login</ion-button>
+
+                </ion-list>
+
+            </ion-card>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>
