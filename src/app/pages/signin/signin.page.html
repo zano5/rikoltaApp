@@ -1,35 +1,33 @@
-<!-- <ion-header>
-    <ion-toolbar>
-        <ion-title>signin</ion-title>
-    </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
-
-
-    <ion-grid style="height: 100%">
-        <ion-row justify-content-center align-items-center style="height: 75%">
-            <ion-card id="login-card">
-
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <img src="../../../assets/images/Funeral.jpg" />
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item-divider>
+                    <h3 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;">Sign In</h3>
+                </ion-item-divider>
+            </ion-col>
+        </ion-row>
+        <ion-row padding>
+            <ion-col padding>
                 <ion-list>
-
                     <ion-item>
-                        <ion-label fixed color="primary">email</ion-label>
-                        <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
+                        <ion-icon name="mail"></ion-icon>&nbsp;
+                        <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
                     </ion-item>
-
                     <ion-item>
-                        <ion-label fixed color="primary">password</ion-label>
-                        <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+                        <ion-icon name="lock"></ion-icon>&nbsp;
+                        <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
                     </ion-item>
-
-                    <ion-button color="primary" expand="full" fill="clear" (click)='logIn()'>login</ion-button>
-
+                    <br>
+                    <ion-button style="text-transform: none;" expand="block" (click)="logIn()" color="medium">Sign In</ion-button>
+                    <p>If you don't have account <a routerLink="/signup">Sign Up</a></p>
                 </ion-list>
-
-            </ion-card>
+            </ion-col>
         </ion-row>
     </ion-grid>
-
-
 </ion-content>

@@ -1,48 +1,45 @@
-<ion-content class="bg-class">
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <img src="../../../assets/images/Funeral.jpg" />
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item-divider>
+                    <h3 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;">Sign Up</h3>
+                </ion-item-divider>
+            </ion-col>
+        </ion-row>
+        <ion-row padding>
+            <ion-col padding>
+                <ion-list>
+                    <ion-item>
 
+                        <ion-icon name="person"></ion-icon>&nbsp;
+                        <ion-input type="text" [(ngModel)]="fullname" placeholder="Full name"></ion-input>
+                    </ion-item>
+                    <ion-item>
 
-    <div id="bg">
-        <div id="bd">
-            <form [formGroup]="validations_form">
-                <ion-grid>
-                    <ion-row color="primary" justify-content-center>
-                        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-                            <div text-center>
-                                <h3>Sign up</h3>
-                            </div>
-                            <br><br><br><br><br><br>
-                            <div padding>
-                                <ion-item id="item" color="transparent">
-                                    <ion-icon name="contact" style="color: grey;"></ion-icon>&nbsp;
-                                    <ion-input name="name" type="text" placeholder="full name" ngModel required></ion-input>
-                                </ion-item>
-                                <ion-item id="item" color="transparent">
-                                    <ion-icon name="card" style="color: grey;"></ion-icon>&nbsp;
-                                    <ion-input name="SaID" type="text" placeholder="south african id" ngModel required></ion-input>
-                                </ion-item>
-                                <ion-item id="item" color="transparent">
-                                    <ion-icon name="mail" style="color: grey;"></ion-icon>&nbsp;
-                                    <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
-                                </ion-item>
-                                <ion-item id="item" color="transparent">
-                                    <ion-icon name="lock" style="color: grey;"></ion-icon>&nbsp;
-                                    <ion-input name="password" type="password" placeholder="password" ngModel required></ion-input>
-                                </ion-item>
-                            </div>
-                            <div id="button">
-                                <ion-button size="small" type="submit" expand="full" fill="clear">Sign up</ion-button>
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-                <ion-row>
-                    <!-- <div id="cen">
-                        don't have an account, please <a id="lol" routerLink='/singup'>
-              signup</a> first!
-                    </div> -->
-                </ion-row>
-            </form>
-        </div>
-    </div>
+                        <ion-icon name="card"></ion-icon>&nbsp;
+                        <ion-input type="text" [(ngModel)]="id" placeholder="ID"></ion-input>
+                    </ion-item>
+                    <ion-item>
 
+                        <ion-icon name="mail"></ion-icon>&nbsp;
+                        <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+
+                        <ion-icon name="lock"></ion-icon>&nbsp;
+                        <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+                    </ion-item>
+                    <br>
+                    <ion-button style="text-transform: none;" expand="block" color="medium">Sign Up</ion-button>
+                    <p>If you have account already <a routerLink="/signin">Sign In</a></p>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
