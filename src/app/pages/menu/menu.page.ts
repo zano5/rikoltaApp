@@ -10,17 +10,29 @@ export class MenuPage implements OnInit {
 
   pages = [
     {
-      title: 'Main',
+      title: 'Home',
       url: '/menu/main',
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Claims',
       url: '/menu/list',
-      icon: 'list',
-      // children: [
-
-      // ]
+      icon: 'bookmarks',
+    },
+    {
+      title: 'Apply',
+      url: '/menu/apply',
+      icon: 'cart',
+    },
+    {
+      title: 'Contact us',
+      url: '/menu/contact',
+      icon: 'call',
+    },
+    {
+      title: 'Help',
+      url: '/menu/help',
+      icon: 'help',
     },
   ];
   constructor() { }

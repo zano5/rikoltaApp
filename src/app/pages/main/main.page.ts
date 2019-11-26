@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPage implements OnInit {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit() {
+  }
+
+  toClaims(){
+    this.route.navigateByUrl('menu/list');
+  }
+  toApply(){
+    this.route.navigateByUrl('menu/apply');
+  }
+  toContact(){
+    this.route.navigateByUrl('menu/contact');
+  }
+  toHelp(){
+    this.route.navigateByUrl('menu/help');
   }
 
 }
