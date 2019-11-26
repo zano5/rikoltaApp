@@ -1,10 +1,25 @@
-.bg-class {
-    background: url('/assets/pexels-photo-3.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    --background: repeating-linear-gradient( rgba(173, 114, 148, 0.521), rgb(90, 47, 77));
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
-// .item {
-//     height: 100px;
-//     --background: repeating-linear-gradient( rgba(48, 37, 43, 0.521), rgb(90, 47, 77));
-// }
+.flex-item {
+    background: tomato;
+    // padding: 5px;
+    width: 100px;
+    height: 100px;
+    // margin-top: 10px;
+    line-height: 150px;
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+}

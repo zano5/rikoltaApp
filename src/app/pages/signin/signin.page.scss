@@ -1,1 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+.center {
+    $display: block;
+    display: $display;
+    $margin-left: auto;
+    margin-left: $margin-left;
+    $margin-right: auto;
+    margin-right: $margin-right;
+    $width: 50%;
+    width: $width;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .center {
+        $width: 100%;
+        width: $width;
+    }
+}
