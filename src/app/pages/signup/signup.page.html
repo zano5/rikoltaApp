@@ -13,30 +13,62 @@
         <ion-row padding>
             <ion-col padding>
                 <ion-list>
+                        <form [formGroup]="register" class="form">
+                                <div class="forms">
+                                <div class="form">
                     <ion-item>
 
                         <ion-icon name="person"></ion-icon>&nbsp;
-                        <ion-input type="text" [(ngModel)]="fullname" placeholder="Full name"></ion-input>
+                        <ion-input type="text" formControlName="name" required  placeholder="Full name"></ion-input>
                     </ion-item>
+                    <div class="error" *ngIf="register.get('name').hasError('required') && register.get('name').touched">
+                            Please input your Name
+                            </div>
+                            <div class="error" *ngIf="register.get('name').hasError('minlength') && register.get('name').touched">
+                            Minimum 3 characters
+                            </div>
+                            <div class="error" *ngIf="register.get('name').hasError('maxlength') && register.get('name').touched">
+                            Maximum 30 characters
+                            </div>
                     <ion-item>
 
                         <ion-icon name="card"></ion-icon>&nbsp;
-                        <ion-input type="text" [(ngModel)]="id" placeholder="ID"></ion-input>
+                        <ion-input type="text"  formControlName="id"  placeholder="ID"></ion-input>
                     </ion-item>
+
                     <ion-item>
 
                         <ion-icon name="mail"></ion-icon>&nbsp;
-                        <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+                        <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
                     </ion-item>
+                    <div class="error" *ngIf="register.get('email').hasError('required') && register.get('email').touched">
+                            Please input your email
+                            </div>
+                            <div class="error" *ngIf="register.get('email').hasError('pattern') && register.get('email').touched">
+                            Email address invalid
+                            </div>
                     <ion-item>
 
                         <ion-icon name="lock"></ion-icon>&nbsp;
-                        <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+                        <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
                     </ion-item>
-                    <br>
-                    <ion-button style="text-transform: none;" expand="block" color="medium">Sign Up</ion-button>
-                    <p>If you have account already <a routerLink="/signin">Sign In</a></p>
+                    <div class="error" *ngIf="register.get('password').hasError('required') && register.get('password').touched">
+                            Please input your password
+                            </div>
+                            <div class="error" *ngIf="register.get('password').hasError('minlength') && register.get('password').touched">
+                            Minimum 6 characters
+                            
+                            </div>
+                            <div class="error" *ngIf="register.get('password').hasError('maxlength') && register.get('password').touched">
+                            Maximum 12 characters
+                            </div>
+                </div>
+            </div>
+            </form>
                 </ion-list>
+                <br>
+                <ion-button style="text-transform: none;" expand="block" color="medium"  [disabled]="!register.valid" (click)="registerUser()">Sign Up</ion-button>
+                <p>If you have account already <a routerLink="/signin">Sign In</a></p>
             </ion-col>
         </ion-row>
     </ion-grid>
