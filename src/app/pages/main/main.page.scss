@@ -12,12 +12,10 @@
 }
 
 .flex-item {
-    background: #D3D3D3;
     // padding: 5px;
     width: 150px;
     height: 120px;
-    // margin-top: 10px;
-    line-height: 150px;
+    // margin-top: 10px; 
     color: black;
     font-weight: bold;
     font-size: 3em;
@@ -26,11 +24,11 @@
 
 .icons {
     color: #38aadf;
+    transform: translateY(50%);
 }
 
 .cardText {
     font-size: medium;
     margin: auto;
     width: 50%;
-    padding: 10px;
 }
