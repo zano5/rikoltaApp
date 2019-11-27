@@ -19,9 +19,9 @@ export class AuthService {
       private alertCtrl : AlertController ) { 
     afAuth.auth.onAuthStateChanged((user)=>{
       if(user){
-        this.router.navigateByUrl("");
+        this.router.navigateByUrl("menu");
       }else{
-        this.router.navigateByUrl("login");
+        this.router.navigateByUrl("signin");
       }
     })
   }
@@ -55,7 +55,7 @@ export class AuthService {
     await this.afAuth.auth.signOut().then((success)=>{
       console.log(success);
       console.log("success");
-      this.router.navigateByUrl("login");
+      this.router.navigateByUrl("signin");
     }).catch((error)=>{
       console.log(error)
     })
