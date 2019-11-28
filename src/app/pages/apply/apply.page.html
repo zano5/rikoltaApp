@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar color="medium">
-        <ion-buttons slot="start">
+        <ion-buttons style="color:white" slot="start">
             <ion-menu-button>
 
             </ion-menu-button>
@@ -10,5 +10,27 @@
 </ion-header>
 
 <ion-content>
-
+    <ion-list style="margin: 0.5em;">
+        <ion-item-divider style="border-bottom:2px solid lightgray ;">
+            <h6 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Choose funeral plan below</h6>
+        </ion-item-divider>
+        <ion-row class="flex-container">
+            <ion-col>
+                <ion-card style="text-align: center;" class="flex-item">
+                    <img style="margin: 0.5em;" src="../../../assets/images/StandardPlan.png">
+                    <h6 style="margin: 0.5em;padding: 0;font-size: 10pt;text-align: center;">-Covers up to 10 people on people</h6>
+                    <h6 style="margin: 0.5em;padding: 0;font-size: 10pt;text-align: center;">-Pays out within just 24 hours</h6>
+                    <h6 style="margin: 0.5em;padding: 0;font-size: 10pt;text-align: center;">-Include grocery and catering</h6>
+                    <ion-button style="text-transform: none;width: 50%;" color="medium">Buy</ion-button>
+                </ion-card>
+                <ion-card style="text-align: center;" class="flex-item">
+                    <img style="margin: 0.5em;" src="../../../assets/images/PremiumPlan.png">
+                    <h6 style="margin: 0.5em;padding: 0;font-size: 10pt;text-align: center;">-Covers up to 15 people on people</h6>
+                    <h6 style="margin: 0.5em;padding: 0;font-size: 10pt;text-align: center;">-Pays out within just 24 hours</h6>
+                    <h6 style="margin: 0.5em;padding: 0;font-size: 10pt;text-align: center;">-Include grocery and catering</h6>
+                    <ion-button style="text-transform: none;width: 50%;" color="medium">Buy</ion-button>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-list>
 </ion-content>

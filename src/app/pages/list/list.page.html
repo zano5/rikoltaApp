@@ -1,14 +1,43 @@
 <ion-header>
     <ion-toolbar color="medium">
-        <ion-buttons slot="start">
+        <ion-buttons style="color:white" slot="start">
             <ion-menu-button>
 
             </ion-menu-button>
         </ion-buttons>
-        <ion-title>Claims</ion-title>
+        <ion-title> Claims</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-list style="margin: 0.5em;">
+        <ion-item-divider style="border-bottom:2px solid lightgray ;">
+            <h6 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Lodge a claim</h6>
+        </ion-item-divider>
+        <ion-item>
+            <ion-icon name="card"></ion-icon>&nbsp;
+            <ion-input type="text" [(ngModel)]="ID" placeholder=" Policy holder RSA ID"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="person"></ion-icon>&nbsp;
+            <ion-input type="text" [(ngModel)]="fullname" placeholder="Claimant Full name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="call"></ion-icon>&nbsp;
+            <ion-input type="text" [(ngModel)]="mobilenumber" placeholder="Claimant Mobile Number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="call"></ion-icon>&nbsp;
+            <ion-input type="text" [(ngModel)]="email" placeholder="Claimant alternative number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
+            <ion-input type="file" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <br>
+    </ion-list>
 
 </ion-content>
+<ion-footer text-center style="border: none;">
+    <ion-button style="text-transform: none;color: white;width: 50%;" color="medium">Submit</ion-button>
+</ion-footer>
