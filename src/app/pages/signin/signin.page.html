@@ -45,7 +45,7 @@
                                 <ion-button style="text-transform: none;" expand="block" color="medium" [disabled]="!loginForm.valid" (click)="loginUser()">Sign In</ion-button>
                                 <p>If you don't have account <a routerLink="/signup">Sign Up</a></p>
                                 <ion-row class="text">
-                                    <a text-center (click)="forgotpassword()"><b>Forgot password?</b></a>
+                                    <a text-center (click)="forgotpassword()" color="medium"><b>Forgot password?</b></a>
                                 </ion-row>
                             </ion-list>
                         </ion-col>
@@ -59,24 +59,27 @@
             <div class="form">
                 <br>
                 <br>
-                <ion-item class="group" color="none">
-                    <ion-label position="floating"><b>Enter Email</b></ion-label>
-                    <ion-input type="email" formControlName="email"></ion-input>
-                </ion-item>
-                <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('required') && forgotpasswordForm.get('email').touched">
-                    Please input your email
-                </div>
-                <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('pattern') && forgotpasswordForm.get('email').touched">
-                    Email address invalid
-                </div>
+                <ion-list padding>
+                    <ion-item class="group" color="none">
+                        <ion-icon name="mail"></ion-icon>&nbsp;
+                        <ion-input type="email" formControlName="email" placeholder="your@email.com"></ion-input>
+                    </ion-item>
+                    <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('required') && forgotpasswordForm.get('email').touched">
+                        Please input your email
+                    </div>
+                    <div class="error" *ngIf="forgotpasswordForm.get('email').hasError('pattern') && forgotpasswordForm.get('email').touched">
+                        Email address invalid
+                    </div>
+                </ion-list>
+
                 <br>
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-button expand="block" color="primary" (click)="Cancel()"><b>Cancel</b></ion-button>
+                            <ion-button expand="block" color="danger" (click)="Cancel()"><b>Cancel</b></ion-button>
                         </ion-col>
                         <ion-col>
-                            <ion-button expand="block" color="primary" [disabled]="!forgotpasswordForm.valid" (click)="reset()"><b>Reset</b></ion-button>
+                            <ion-button expand="block" color="medium" [disabled]="!forgotpasswordForm.valid" (click)="reset()"><b>Reset</b></ion-button>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
