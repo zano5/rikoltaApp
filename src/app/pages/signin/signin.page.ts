@@ -10,7 +10,17 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
+  loading: HTMLIonLoadingElement;
+  facebook: any;
+  // facebook: any;
+  // public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
+  selectedVal: string;
+  responseMessage: string = '';
+  responseMessageType: string = '';
+  emailInput: string;
+  passwordInput: string;
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   public loginForm: FormGroup;
   public forgotpasswordForm: FormGroup;
   isForgotPassword: boolean = true;
@@ -68,6 +78,31 @@ export class SigninPage implements OnInit {
       );
     })  
   }
-
-
+  showMessage(type, msg) {
+    this.responseMessageType = type;
+    this.responseMessage = msg;
+    setTimeout(() => {
+      this.responseMessage = "";
+    }, 2000);
+  }
+  public onValChange(val: string) {
+    this.showMessage("", "");
+    this.selectedVal = val;
+  }
+ 
+  // Check localStorage is having User Data
+  isUserLoggedIn() {
+    this.userDetails = this.authService.isUserLoggedIn();
+  }
+  loginUser1() {
+    this.responseMessage = "";
+    this.authService.login(this.emailInput, this.passwordInput)
+      .then(res => {
+        console.log(res);
+        this.showMessage("success", "Successfully Logged In!");
+        this.isUserLoggedIn();
+      }, err => {
+        this.showMessage("danger", err.message);
+      });
+  }
 }
