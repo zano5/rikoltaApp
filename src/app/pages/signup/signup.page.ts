@@ -46,24 +46,35 @@ export class SignupPage implements OnInit {
 
   ngOnInit() {
   }
+
   registerUser(){
     this.authService.signup(this.register.value.email, this.register.value.password).then((value) =>{
       localStorage.setItem('userid', this.afAuth.auth.currentUser.uid)
-
-      this.angularfire.collection('users').doc(this.afAuth.auth.currentUser.uid).set({
-        displayName: this.register.value.name,
-        email: this.register.value.email,
-        id: this.register.value.id,
-        // gender: this.register.value.gender,
-        userid: this.afAuth.auth.currentUser.uid,
-      }).then(() => {
+ 
+      
+     //  ---------------
+     this.angularfire.collection('users').doc(this.afAuth.auth.currentUser.uid).set({
+      displayName: this.register.value.name,
+      email: this.register.value.email,
+      id: this.register.value.id,
+      userid: this.afAuth.auth.currentUser.uid,
+     }).catch(error=>{
+       alert(error.message)
+     })
+     //  ---------------
+ 
+     this.afAuth.auth.currentUser.updateProfile({
+      displayName: this.register.value.name,
+ 
+      }).then(()=> {
         this.router.navigateByUrl('signin');
-      }).catch(err =>{
-        alert(err.message)
-      })
-      this.afAuth.auth.currentUser.updateProfile({
-        displayName: this.register.value.name,
-      })
-    });
+ 
+      }).catch(err=>{
+ alert(err.message)   
+   })
+    }).catch(err=>{
+      alert(err.message)
+    })
   }
+
 }

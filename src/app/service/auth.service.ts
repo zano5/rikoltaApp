@@ -17,13 +17,13 @@ export class AuthService {
     private router: Router,
      public afAuth: AngularFireAuth,
       private alertCtrl : AlertController ) { 
-    afAuth.auth.onAuthStateChanged((user)=>{
-      if(user){
-        this.router.navigateByUrl("menu");
-      }else{
-        this.router.navigateByUrl("signin");
-      }
-    })
+    // afAuth.auth.onAuthStateChanged((user)=>{
+    //   if(user){
+    //     this.router.navigateByUrl("menu");
+    //   }else{
+    //     this.router.navigateByUrl("signin");
+    //   }
+    // })
   }
 
   async login(email: string , password: string){
