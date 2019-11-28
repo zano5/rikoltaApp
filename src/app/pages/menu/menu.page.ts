@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-menu',
@@ -35,9 +37,15 @@ export class MenuPage implements OnInit {
       icon: 'help',
     },
   ];
-  constructor() { }
+  constructor(private navCtrl: NavController, public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
+  }
+
+  logOut(){
+
+    this.afAuth.auth.signOut();
+    this.navCtrl.navigateForward('/signin'); 
   }
 
 }
