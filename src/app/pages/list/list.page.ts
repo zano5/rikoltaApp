@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { PopoverController } from '@ionic/angular'; 
 import { PopoverResultPage } from 'src/app/components/popover-result/popover-result.page';
@@ -9,10 +11,13 @@ import { PopoverResultPage } from 'src/app/components/popover-result/popover-res
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
+
+  
   register: FormGroup;
   name: any;
   username: any;
-  constructor(private fb: FormBuilder,public popoverController:PopoverController) { 
+ 
+  constructor(private fb: FormBuilder, public modalController: ModalController, public popoverController:PopoverController) { 
     this.register =  fb.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -50,6 +55,13 @@ export class ListPage implements OnInit {
       translucent: true
     });
     return await popover.present();
+  }
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      animated: true
+    });
+    return await modal.present();
   }
 
 }
