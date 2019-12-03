@@ -10,7 +10,7 @@
 
             <ion-menu-toggle auto-hide="true" *ngIf="p.url">
                 <ion-item routerDirection="root" [routerLink]="[p.url]" routerLinkActive="active">
-                    <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                    <ion-icon slot="start" [name]="p.icon" color="medium"></ion-icon>
                     <ion-label>
                         {{p.title}}
                     </ion-label>
@@ -22,7 +22,7 @@
     <ion-footer>
 
         <ion-item (click)="logOut()">
-            <ion-icon name="power"></ion-icon>&nbsp;&nbsp;&nbsp;
+            <ion-icon name="power" color="medium"></ion-icon>&nbsp;&nbsp;&nbsp;
             <ion-label>Sign out</ion-label>
         </ion-item>
 

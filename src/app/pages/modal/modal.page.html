@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar color="medium">
+        <ion-title>modal</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-list-header>Menu Selection</ion-list-header>
+
+        <ion-item>
+            <ion-label>Lunch</ion-label>
+            <ion-select placeholder="Select Lunch option">
+                <ion-select-option value="one">optOne</ion-select-option>
+                <ion-select-option value="two">optTwo</ion-select-option>
+                <ion-select-option value="three">optThree</ion-select-option>
+                <ion-select-option value="four">optFour</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Refreshments</ion-label>
+            <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="brown">Brown</ion-select-option>
+                <ion-select-option value="blonde">Blonde</ion-select-option>
+                <ion-select-option value="black">Black</ion-select-option>
+                <ion-select-option value="red">Red</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+    </ion-list>
+
+</ion-content>

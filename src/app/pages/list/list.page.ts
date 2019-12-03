@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPage implements OnInit {
 
-  constructor() { }
-
+  constructor(public modalController: ModalController) { }
+  
   ngOnInit() {
+  }
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      animated: true
+    });
+    return await modal.present();
   }
 
 }
