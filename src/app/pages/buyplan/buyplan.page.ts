@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PopoverController } from '@ionic/angular'; 
+import { PopoverPurchasePage } from 'src/app/components/popover-purchase/popover-purchase.page';
 
 @Component({
   selector: 'app-buyplan',
@@ -10,7 +12,7 @@ export class BuyplanPage implements OnInit {
   pricePlan:string;
   form:number;
   planMember = [];
-  constructor(private activatedRoute:ActivatedRoute) {
+  constructor(private activatedRoute:ActivatedRoute,private popoverController:PopoverController ) {
     this.form = 1;
    }
 
@@ -32,6 +34,19 @@ export class BuyplanPage implements OnInit {
    }) 
   } 
   Next(){
-    this.form = 2;
+    if (this.form < 2) {
+      this.form += 1;
+    }else{ 
+      this.presentPopover();
+    }
+    
+  
+  } 
+  async presentPopover() {
+    const popover = await this.popoverController.create({
+      component: PopoverPurchasePage, 
+      translucent: true
+    });
+    return await popover.present();
   }
 }

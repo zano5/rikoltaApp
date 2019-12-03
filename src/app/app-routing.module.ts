@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'modal', loadChildren: './pages/modal/modal.module#ModalPageModule' },
   { path: 'buyplan', loadChildren: './pages/buyplan/buyplan.module#BuyplanPageModule' },
   { path: 'popover-result', loadChildren: './components/popover-result/popover-result.module#PopoverResultPageModule' },
+  { path: 'popover-purchase', loadChildren: './components/popover-purchase/popover-purchase.module#PopoverPurchasePageModule' },
 ];
 
 @NgModule({
