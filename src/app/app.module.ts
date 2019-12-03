@@ -14,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase'; 
+import { PopoverResultPageModule } from './components/popover-result/popover-result.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCpoNr49A_3JXK5Yezi_Z4xF3Xr2yOmji0",
@@ -40,6 +41,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    PopoverResultPageModule
   ],
   providers: [
     StatusBar,
