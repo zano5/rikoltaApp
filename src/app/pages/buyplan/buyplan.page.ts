@@ -9,6 +9,8 @@ import { PopoverPurchasePage } from 'src/app/components/popover-purchase/popover
   styleUrls: ['./buyplan.page.scss'],
 })
 export class BuyplanPage implements OnInit {
+  fullname = [];
+  ID = [];
   pricePlan:string;
   form:number;
   planMember = [];
@@ -37,6 +39,8 @@ export class BuyplanPage implements OnInit {
     if (this.form < 2) {
       this.form += 1;
     }else{ 
+      console.log(this.fullname);
+      console.log(this.ID);
       this.presentPopover();
     }
     
