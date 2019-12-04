@@ -9,12 +9,11 @@ import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms'
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
-
-  
   register: FormGroup;
   name: any;
   username: any;
-  constructor(private fb: FormBuilder, public modalController: ModalController) { 
+  constructor(private fb: FormBuilder, public modalController: ModalController,
+    ) { 
     this.register =  fb.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
