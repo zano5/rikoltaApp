@@ -16,6 +16,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import * as firebase from 'firebase';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCpoNr49A_3JXK5Yezi_Z4xF3Xr2yOmji0",
   authDomain: "funeralapp-3b540.firebaseapp.com",

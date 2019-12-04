@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -14,6 +15,10 @@ export class ListPage implements OnInit {
   register: FormGroup;
   name: any;
   username: any;
+  public lunch: string;
+  public refreshments: string;
+  hide: boolean = false;
+
   constructor(private fb: FormBuilder, public modalController: ModalController) { 
     this.register =  fb.group({
       email: new FormControl('', Validators.compose([
@@ -45,12 +50,23 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
   }
+
   async presentModal() {
     const modal = await this.modalController.create({
       component: ModalPage,
       animated: true
     });
+
+    modal.onWillDismiss().then(dataReturned => {
+      this.lunch = dataReturned.data;
+      this.refreshments = dataReturned.role;
+    });
     return await modal.present();
+  }
+  
+
+  ngIfCtrl(){
+    this.hide = !this.hide
   }
 
 }

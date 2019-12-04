@@ -1,8 +1,8 @@
 <ion-header>
     <ion-toolbar color="medium">
-        <ion-title>modal</ion-title>
+        <ion-title>Menu</ion-title>
         <ion-buttons slot="end">
-            <ion-button (click)="closeModal()">
+            <ion-button (click)="closeModal(food, drinks)">
                 <ion-icon slot="icon-only" name="close"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -11,12 +11,12 @@
 
 <ion-content>
 
-    <ion-list>
+    <!-- <ion-list>
         <ion-list-header>Menu Selection</ion-list-header>
 
         <ion-item>
             <ion-label>Lunch</ion-label>
-            <ion-select placeholder="Select Lunch option">
+            <ion-select placeholder="Select Lunch option" [(ngModel)]="food" (change)="closeModal(food)">
                 <ion-select-option value="one">optOne</ion-select-option>
                 <ion-select-option value="two">optTwo</ion-select-option>
                 <ion-select-option value="three">optThree</ion-select-option>
@@ -26,7 +26,7 @@
 
         <ion-item>
             <ion-label>Refreshments</ion-label>
-            <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+            <ion-select value="brown" [(ngModel)]="drinks" (change)="closeModal(drinks)">
                 <ion-select-option value="brown">Brown</ion-select-option>
                 <ion-select-option value="blonde">Blonde</ion-select-option>
                 <ion-select-option value="black">Black</ion-select-option>
@@ -34,6 +34,39 @@
             </ion-select>
         </ion-item>
 
-    </ion-list>
+    </ion-list> -->
+
+    <ion-item-divider style="border-bottom:2px solid lightgray ;">
+        <h6 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Select Lunch option</h6>
+    </ion-item-divider>
+    <ion-card>
+        <ion-item>
+            <ion-label>ion-item in a card, icon left, button right</ion-label>
+            <img src="/assets/images/eat.png">
+            <ion-text slot="end">pick a menu for<br>the day from<br>the provided list</ion-text>
+        </ion-item>
+
+        <ion-card-content class="cardContent">
+
+            <ion-item>
+                <ion-label>Lunch</ion-label>
+                <ion-select interface="action-sheet" placeholder="Lunch" [(ngModel)]="food" (change)="closeModal(food)">
+                    <ion-select-option value="one">option_one</ion-select-option>
+                    <ion-select-option value="two">option_two</ion-select-option>
+                    <ion-select-option value="three">option_three</ion-select-option>
+                    <ion-select-option value="four">option_four</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Refreshments</ion-label>
+                <ion-select interface="action-sheet" placeholder="Drinks" [(ngModel)]="drinks" (change)="closeModal(drinks)">
+                    <ion-select-option value="one">option_one</ion-select-option>
+                    <ion-select-option value="two">option_two</ion-select-option>
+                    <ion-select-option value="three">option_three</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>

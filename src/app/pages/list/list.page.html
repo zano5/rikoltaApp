@@ -10,39 +10,52 @@
 </ion-header>
 
 <ion-content>
-    
+
     <ion-list style="margin: 0.5em;">
         <ion-item-divider style="border-bottom:2px solid lightgray ;">
             <h6 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Lodge a claim</h6>
         </ion-item-divider>
         <ion-item>
             <ion-icon name="card"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder=" Policy holder RSA ID" ></ion-input>
+            <ion-input type="number" required placeholder=" Policy holder RSA ID"></ion-input>
         </ion-item>
         <ion-item>
             <ion-icon name="person"></ion-icon>&nbsp;
-            <ion-input type="text" required placeholder="Claimant Full name" ></ion-input>
+            <ion-input type="text" required placeholder="Claimant Full name"></ion-input>
         </ion-item>
         <ion-item>
             <ion-icon name="call"></ion-icon>&nbsp;
-            <ion-input type="number"required placeholder="Claimant Mobile Number" ></ion-input>
+            <ion-input type="number" required placeholder="Claimant Mobile Number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-icon name="call"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder="Claimant alternative number" ></ion-input>
+            <ion-input type="number" required placeholder="Claimant alternative number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
             <ion-input type="file" required></ion-input>
+            <!-- <ion-icon name="attach" slot="end"></ion-icon> -->
         </ion-item>
-        <ion-item (click)="presentModal()">
+        <ion-item (click)="presentModal()" (click)="ngIfCtrl()">
             <ion-icon name="create"></ion-icon>&nbsp;
-            <ion-label style="color: gray;">menu/food selection</ion-label>
+            <ion-label style="color: gray; ">Menu/Food selection</ion-label>
         </ion-item>
 
     </ion-list>
+    <table *ngIf="hide" padding>
+        <tr>
+            <th>Lunch</th>
+            <th>Refreshments</th>
+
+        </tr>
+        <tr>
+            <td>{{lunch | json}}</td>
+            <td>{{refreshments | json}}</td>
+
+        </tr>
+    </table>
 
 </ion-content>
-<ion-footer text-center style="border: none;">
-    <ion-button style="text-transform: none;color: white;width: 50%;" color="medium">Submit</ion-button>
+<ion-footer text-center style="border: none; ">
+    <ion-button style="text-transform: none;color: white;width: 50%; " color="medium ">Submit</ion-button>
 </ion-footer>
