@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -9,6 +10,8 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
   { path: 'modal', loadChildren: './pages/modal/modal.module#ModalPageModule' },
   { path: 'buyplan', loadChildren: './pages/buyplan/buyplan.module#BuyplanPageModule' },
+  { path: 'popover-result', loadChildren: './components/popover-result/popover-result.module#PopoverResultPageModule' },
+  { path: 'popover-purchase', loadChildren: './components/popover-purchase/popover-purchase.module#PopoverPurchasePageModule' },
 ];
 
 @NgModule({

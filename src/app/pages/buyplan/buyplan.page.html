@@ -49,15 +49,15 @@
         </ion-item>
     </ion-list>
     <ion-list *ngIf="form == 2" padding>
-        <ion-list *ngFor="let member of planMember">
+        <ion-list *ngFor="let member of planMember;let i=index">
             <h6>{{member}}</h6>
             <ion-item>
                 <ion-icon name="person"></ion-icon>&nbsp;
-                <ion-input type="text" [(ngModel)]="fullname" placeholder="Full name"></ion-input>
+                <ion-input type="text" [(ngModel)]="fullname[i]" name="fullname[{{i}}]" placeholder="Full name"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-icon name="card"></ion-icon>&nbsp;
-                <ion-input type="number" [(ngModel)]="ID" placeholder="RSA ID"></ion-input>
+                <ion-input type="number" [(ngModel)]="ID[i]" name="ID[{{i}}]" placeholder="RSA ID"></ion-input>
             </ion-item>
         </ion-list>
     </ion-list>
