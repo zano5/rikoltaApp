@@ -9,6 +9,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+    animation: cardShow 2s ease-in;
 }
 
 .flex-item {
@@ -31,4 +32,13 @@
     font-size: medium;
     margin: auto;
     width: 50%;
+}
+
+@keyframes cardShow {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }

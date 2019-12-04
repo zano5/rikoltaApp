@@ -14,7 +14,7 @@ export class BuyplanPage implements OnInit {
   pricePlan:string;
   form:number;
   planMember = [];
-  constructor(private activatedRoute:ActivatedRoute,private popoverController:PopoverController ) {
+  constructor(private router:Router,private activatedRoute:ActivatedRoute,private popoverController:PopoverController ) {
     this.form = 1;
    }
 
@@ -42,6 +42,7 @@ export class BuyplanPage implements OnInit {
       console.log(this.fullname);
       console.log(this.ID);
       this.presentPopover();
+      this.router.navigateByUrl('/menu/main')
     }
     
   
