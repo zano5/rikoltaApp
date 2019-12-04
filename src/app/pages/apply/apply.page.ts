@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-apply',
@@ -13,8 +13,10 @@ export class ApplyPage implements OnInit {
   ngOnInit() {
   }
 
-  buyPlan(pricePlan:any){
+  buyPlan(pricePlan:any){ 
     console.log(pricePlan);
     this.router.navigate(["/buyplan",{plan:pricePlan}]);
+
   }
+  
 }

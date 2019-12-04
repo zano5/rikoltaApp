@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { PopoverResultPage } from 'src/app/components/popover-result/popover-result.page';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -18,8 +19,8 @@ export class ListPage implements OnInit {
   public lunch: string;
   public refreshments: string;
   hide: boolean = false;
-
-  constructor(private fb: FormBuilder, public modalController: ModalController) { 
+ 
+  constructor(private fb: FormBuilder, public modalController: ModalController, public popoverController:PopoverController) { 
     this.register =  fb.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -49,6 +50,14 @@ export class ListPage implements OnInit {
   }
 
   ngOnInit() {
+  } 
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PopoverResultPage,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
 
   async presentModal() {

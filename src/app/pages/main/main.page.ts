@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-main',
@@ -11,8 +11,15 @@ export class MainPage implements OnInit {
   constructor(private route:Router) { }
 
   ngOnInit() {
+    
   }
-
+  sliderConfig = {
+    spaceBetween: 10,
+    centeredSlides: true,
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay:true,
+  };
   toClaims(){
     this.route.navigateByUrl('menu/list');
   }
