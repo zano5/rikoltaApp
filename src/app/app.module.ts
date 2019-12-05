@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire';
 import * as firebase from 'firebase'; 
 import { PopoverResultPageModule } from './components/popover-result/popover-result.module';
 import { PopoverPurchasePageModule } from './components/popover-purchase/popover-purchase.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCpoNr49A_3JXK5Yezi_Z4xF3Xr2yOmji0",
@@ -42,6 +43,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     PopoverResultPageModule,
     PopoverPurchasePageModule
   ],
