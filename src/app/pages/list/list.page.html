@@ -51,19 +51,17 @@
             <ion-input type="file" required></ion-input>
         </ion-item> -->
    
-
-        <ion-item> 
-        
+<ion-item>
                 <div class="image-upload" float-right>
-                        <label for="file-input">
+                    <label for="file-input">
                                 <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
                             <!-- <ion-icon class="input" name="attach"> </ion-icon> -->
                         
                         <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
                       </label>
-                      </div>
-        </ion-item>
-</form>
+                </div>
+            </ion-item>
+        </form>
     </ion-list>
     <table *ngIf="hide" padding>
         <tr>
@@ -81,6 +79,6 @@
 </ion-content>
 
 <ion-footer text-center style="border: none;">
-    <ion-button style="text-transform: none;color: white;width: 50%;" color="medium"  (click)="presentPopover()">Submit</ion-button>
+    <ion-button style="text-transform: none;color: white;width: 50%;" color="medium" (click)="presentPopover()">Submit</ion-button>
 
 </ion-footer>
