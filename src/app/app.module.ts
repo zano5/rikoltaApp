@@ -21,6 +21,7 @@ import { Popover1HelpPageModule } from './components/popover1-help/popover1-help
 import { Popover2HelpPageModule } from './components/popover2-help/popover2-help.module';
 import { Popover3HelpPageModule } from './components/popover3-help/popover3-help.module';
 import { Popover4HelpPageModule } from './components/popover4-help/popover4-help.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 
 const firebaseConfig = {
@@ -47,6 +48,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     PopoverResultPageModule,
     PopoverPurchasePageModule,
     Popover1HelpPageModule,

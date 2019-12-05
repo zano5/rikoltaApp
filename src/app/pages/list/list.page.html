@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="medium">
+    <ion-toolbar color="dark">
         <ion-buttons slot="start">
             <ion-menu-button>
 
@@ -9,38 +9,65 @@
     </ion-toolbar>
 </ion-header>
 
+<!-- <ion-header>
+    
+        <div class="image-upload" float-right>
+    <label for="file-input">
+        <ion-icon class="input" name="attach"> </ion-icon>
+    
+    <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+  </label>
+  </div>
+      
+
+  </ion-header> -->
 <ion-content>
 
     <ion-list style="margin: 0.5em;">
-        <ion-item-divider style="border-bottom:2px solid lightgray ;">
-            <h6 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Lodge a claim</h6>
-        </ion-item-divider>
-        <ion-item>
-            <ion-icon name="card"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder=" Policy holder RSA ID"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="person"></ion-icon>&nbsp;
-            <ion-input type="text" required placeholder="Claimant Full name"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="call"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder="Claimant Mobile Number"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="call"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder="Claimant alternative number"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
-            <!-- <ion-input type="file" required></ion-input> -->
-            <ion-icon name="attach" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item (click)="presentModal()" (click)="ngIfCtrl()">
-            <ion-icon name="create"></ion-icon>&nbsp;
-            <ion-label style="color: gray; ">Menu/Food selection</ion-label>
-        </ion-item>
+        <form>
+            <ion-item-divider style="border-bottom:2px solid lightgray ;">
+                <h5 style="font-weight: bolder;color: black;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Lodge a claim</h5>
+            </ion-item-divider>
+            <ion-item>
+                <ion-icon name="card"></ion-icon>&nbsp;
+                <ion-input type="number" required placeholder=" Policy holder RSA ID"></ion-input>
+            </ion-item>
 
+            <ion-item>
+                <ion-icon name="person" for="t2"></ion-icon>&nbsp;
+                <ion-input type="text" id="t2" name="name" required placeholder="Claimant Full name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name="call"></ion-icon>&nbsp;
+                <ion-input type="number" required placeholder="Claimant Mobile Number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="call"></ion-icon>&nbsp;
+                <ion-input type="number" required placeholder="Claimant alternative number"></ion-input>
+            </ion-item>
+            <ion-item style="color: gray;">
+                <ion-icon name="cloud-upload"></ion-icon>&nbsp;Death Certificate &nbsp;
+                <!-- <ion-input type="file" required></ion-input> -->
+                <ion-icon name="attach" slot="end"></ion-icon>
+            </ion-item>
+            <ion-item (click)="presentModal()" (click)="ngIfCtrl()">
+                <ion-icon name="create"></ion-icon>&nbsp;
+                <ion-label style="color: gray; ">Menu/Food selection</ion-label>
+            </ion-item>
+
+            <ion-item>
+
+                <div class="image-upload" float-right>
+                    <label for="file-input">
+                                <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
+                            <!-- <ion-icon class="input" name="attach"> </ion-icon> -->
+                        
+                        <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+                      </label>
+                </div>
+            </ion-item>
+        </form>
     </ion-list>
     <table *ngIf="hide" padding>
         <tr>
@@ -56,6 +83,8 @@
     </table>
 
 </ion-content>
+
 <ion-footer text-center style="border: none;">
     <ion-button style="text-transform: none;color: white;width: 50%;" color="medium" (click)="presentPopover()">Submit</ion-button>
+
 </ion-footer>

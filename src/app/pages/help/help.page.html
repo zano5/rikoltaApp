@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="medium">
+    <ion-toolbar color="dark">
         <ion-buttons slot="start">
             <ion-menu-button>
 
@@ -13,21 +13,21 @@
     <img src="../../../assets/images/Icon-help.png" alt="">
     <ion-list>
         <ion-item-divider style="border-bottom:2px solid lightgray ;">
-            <h6 style="font-weight: bold;color: #616A6B;font-family: 'Nunito', sans-serif;width: 100%;" text-center>App Usage</h6>
+            <h5 style="font-weight: bold;color: black;font-family: 'Nunito', sans-serif;width: 100%;" text-center>App Usage</h5>
         </ion-item-divider>
     </ion-list>
     <ion-row class="flex-container">
         <ion-col>
-            <ion-card class="flex-item" (click)="popoverOverview()">
-                <h6 style="margin: 0.5em;padding: 0;">Overview</h6>
+            <ion-card class="flex-item-1">
+                <h6 style="margin: 0.5em;padding: 0;" (click)="popoverOverview()">Overview</h6>
             </ion-card>
-            <ion-card class="flex-item" (click)="popoverClaim()">
-                <h6 style="margin: 0.5em;padding: 0;">How to lodge a claim ?</h6>
+            <ion-card class="flex-item-2">
+                <h6 style="margin: 0.5em;padding: 0;" (click)="popoverClaim()">How to lodge a claim ?</h6>
             </ion-card>
-            <ion-card class="flex-item" (click)="popoverApply()">
-                <h6 style="margin: 0.5em;padding: 0;">How to apply for funeral plan ?</h6>
+            <ion-card class="flex-item-3">
+                <h6 style="margin: 0.5em;padding: 0;" (click)="popoverApply()">How to apply for funeral plan ?</h6>
             </ion-card>
-            <ion-card class="flex-item" (click)="popoverContact()">
+            <ion-card class="flex-item-4" (click)="popoverContact()">
                 <h6 style="margin: 0.5em;padding: 0;">How do I contact offices ?</h6>
             </ion-card>
         </ion-col>
