@@ -28,6 +28,8 @@ export class ListPage implements OnInit {
   downloadURL: any;
   id: string;
   uploadState: any;
+  // donation = {} as Donation
+
   constructor(private fb: FormBuilder, public modalController: ModalController,
      public popoverController:PopoverController,
      public Storage: AngularFireStorage,
@@ -99,16 +101,26 @@ export class ListPage implements OnInit {
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
            console.log(urlfile);
-           this.angularfire.collection('chats2').add({
+           this.angularfire.collection('documents').add({
             Name: this.afAuth.auth.currentUser.displayName,
             image:urlfile,
             UserID: this.afAuth.auth.currentUser.uid,
             TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
+            name: name,
+            // surname: donation.surname,
+            // location: donation.location,
+            // date: Date.now(),
+            // type: donation.type,
+            // phoneNumber: donation.phoneNumber,
+            // description: donation.description,
+            
           });
          
           });
         })
       ).subscribe();
     }
+    
+  }
 
-}
+
