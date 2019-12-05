@@ -9,18 +9,26 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    animation: cardShow 2s ease-in;
 }
 
-.flex-item {
-    // padding: 5px;
+.flex-item-right {
     width: 150px;
     height: 120px;
-    // margin-top: 10px; 
     color: black;
     font-weight: bold;
     font-size: 3em;
     text-align: center;
+    animation: cardShowRight 2s ease-in;
+}
+
+.flex-item-left {
+    width: 150px;
+    height: 120px;
+    color: black;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+    animation: cardShowLeft 2s ease-in;
 }
 
 .icons {
@@ -34,12 +42,22 @@
     width: 50%;
 }
 
-@keyframes cardShow {
+@keyframes cardShowRight {
     0% {
         opacity: 0;
     }
     50% {
-        transform: translateY(-15px);
+        transform: translateX(-15px);
+        opacity: 0.5;
+    }
+}
+
+@keyframes cardShowLeft {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(15px);
         opacity: 0.5;
     }
 }
