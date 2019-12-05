@@ -11,11 +11,48 @@
     justify-content: space-around;
 }
 
-.flex-item {
+.flex-item-1 {
     height: 28%;
     color: black;
     font-weight: bold;
     font-size: 3em;
     padding: 0;
     margin: 0.5em;
+    right: -100px;
+    opacity: 0;
+    animation: slidingCard-1 0.8s forwards;
+    animation-delay: 0.5s;
+}
+
+.flex-item-2 {
+    height: 28%;
+    color: black;
+    font-weight: bold;
+    font-size: 3em;
+    padding: 0;
+    margin: 0.5em;
+    right: -100px;
+    opacity: 0;
+    animation: slidingCard-1 0.8s forwards;
+    animation-delay: 0.8s;
+}
+
+.flex-item-3 {
+    height: 28%;
+    color: black;
+    font-weight: bold;
+    font-size: 3em;
+    padding: 0;
+    margin: 0.5em;
+    right: -100px;
+    opacity: 0;
+    animation: slidingCard-1 0.8s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes slidingCard-1 {
+    100% {
+        right: 0;
+        opacity: 1;
+    }
 }

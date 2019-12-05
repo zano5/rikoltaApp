@@ -18,7 +18,10 @@
     font-weight: bold;
     font-size: 3em;
     text-align: center;
-    animation: cardShowRight 2s ease-in;
+    right: -100px;
+    opacity: 0;
+    animation: cardShowRight 1s forwards;
+    animation-delay: 0.5s;
 }
 
 .flex-item-left {
@@ -28,7 +31,10 @@
     font-weight: bold;
     font-size: 3em;
     text-align: center;
-    animation: cardShowLeft 2s ease-in;
+    left: -100px;
+    opacity: 0;
+    animation: cardShowLeft 1s forwards;
+    animation-delay: 0.5s;
 }
 
 .icons {
@@ -42,29 +48,16 @@
     width: 50%;
 }
 
-@keyframes cardShowRight {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        transform: translateX(-15px);
-        opacity: 0.5;
-    }
-}
-
 @keyframes cardShowLeft {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        transform: translateX(15px);
-        opacity: 0.5;
+    100% {
+        left: 0;
+        opacity: 1;
     }
 }
 
-// ion-slides {
-//     height: 200px;
-//     width: 100%;
-//     display: flex;
-//     flex-direction: row;
-// }
+@keyframes cardShowRight {
+    100% {
+        right: 0;
+        opacity: 1;
+    }
+}
