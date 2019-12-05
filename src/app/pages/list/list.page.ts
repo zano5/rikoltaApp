@@ -62,8 +62,8 @@ export class ListPage implements OnInit {
         Validators.required
       ])),
     })
-    this.key = this.afAuth.auth.currentUser.uid;
-    this.chatRef = this.angularfire.collection('documents',ref=>ref.orderBy('TimeStamp')).valueChanges();
+    // this.key = this.afAuth.auth.currentUser.uid;
+    // this.chatRef = this.angularfire.collection('documents',ref=>ref.orderBy('TimeStamp')).valueChanges();
    
   }
 
