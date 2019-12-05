@@ -1,10 +1,14 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ActionSheetController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { PopoverController } from '@ionic/angular'; 
 import { PopoverResultPage } from 'src/app/components/popover-result/popover-result.page';
-
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
+import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
@@ -14,13 +18,26 @@ export class ListPage implements OnInit {
   register: FormGroup;
   name: any;
   username: any;
- 
-  constructor(private fb: FormBuilder, public modalController: ModalController, public popoverController:PopoverController) { 
+  downloadURL: any;
+  ref: any;
+  id: string;
+  uploadState: any;
+  key: string;
+  chatRef: any;
+  constructor(private fb: FormBuilder,
+     public modalController: ModalController,
+      public popoverController:PopoverController,
+      public Storage: AngularFireStorage,
+      public afAuth: AngularFireAuth,
+      private angularfire: AngularFirestore,
+      public actionSheetController: ActionSheetController,
+     
+      ) { 
     this.register =  fb.group({
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
+      // email: new FormControl('', Validators.compose([
+      //   Validators.required,
+      //   Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      // ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required
@@ -42,6 +59,9 @@ export class ListPage implements OnInit {
         Validators.required
       ])),
     })
+    this.key = this.afAuth.auth.currentUser.uid;
+    this.chatRef = this.angularfire.collection('documents',ref=>ref.orderBy('TimeStamp')).valueChanges();
+   
   }
 
   ngOnInit() {
@@ -61,5 +81,27 @@ export class ListPage implements OnInit {
     });
     return await modal.present();
   }
+  upload(event) {
+    const file= event.target.files[0];
+     this.id = Math.random().toString(36).substring(2);
+    const filepath=this.id;
+    this.ref = this.Storage.ref(filepath);
+    const task = this.Storage.upload(filepath, file);
+    this.uploadState = task.percentageChanges();
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
+           console.log(urlfile);
+           this.angularfire.collection('chats2').add({
+            Name: this.afAuth.auth.currentUser.displayName,
+            image:urlfile,
+            UserID: this.afAuth.auth.currentUser.uid,
+            TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
+          });
+         
+          });
+        })
+      ).subscribe();
+    }
 
 }
