@@ -19,6 +19,7 @@ import { PopoverResultPageModule } from './components/popover-result/popover-res
 import { PopoverPurchasePageModule } from './components/popover-purchase/popover-purchase.module';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCpoNr49A_3JXK5Yezi_Z4xF3Xr2yOmji0",
   authDomain: "funeralapp-3b540.firebaseapp.com",

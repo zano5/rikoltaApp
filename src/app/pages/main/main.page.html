@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="medium">
+    <ion-toolbar color="dark">
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -10,18 +10,23 @@
 </ion-header>
 
 <ion-content>
-    <ion-slides style="margin: 0.5em;">
+    <ion-slides [options]="sliderConfig" pager="true" style="margin: 0.5em;">
 
         <ion-slide>
-            <img style="border-radius:5px;" src="../../../assets/images/Slide1.jpg">
+            <img style="border-radius:5px;" src="../../../assets/images/Slide1-2.jpg">
         </ion-slide>
-
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/Slide2-2.jpg">
+        </ion-slide>
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/Slide3-2.jpg">
+        </ion-slide>
     </ion-slides>
 
 
     <ion-row class="flex-container">
         <ion-col>
-            <ion-card class="flex-item" (click)="toClaims()">
+            <ion-card class="flex-item-left" (click)="toClaims()">
                 <ion-col>
                     <ion-icon name="book" class="icons"></ion-icon><br>
                     <ion-label class="cardText">Claims</ion-label>
@@ -29,7 +34,7 @@
             </ion-card>
         </ion-col>
         <ion-col>
-            <ion-card class="flex-item" (click)="toApply()">
+            <ion-card class="flex-item-right" (click)="toApply()">
                 <ion-col>
                     <ion-icon md="md-cart" class="icons"></ion-icon>
                     <br>
@@ -38,7 +43,7 @@
             </ion-card>
         </ion-col>
         <ion-col>
-            <ion-card class="flex-item" (click)="toContact()">
+            <ion-card class="flex-item-left" (click)="toContact()">
                 <ion-col>
                     <ion-icon name="call" class="icons"></ion-icon>
                     <br>
@@ -47,7 +52,7 @@
             </ion-card>
         </ion-col>
         <ion-col>
-            <ion-card class="flex-item" (click)="toHelp()">
+            <ion-card class="flex-item-right" (click)="toHelp()">
                 <ion-col>
                     <ion-icon md="md-help" class="icons"></ion-icon>
                     <br>

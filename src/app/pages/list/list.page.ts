@@ -1,14 +1,15 @@
+import { finalize } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ActionSheetController } from '@ionic/angular';
+import { ModalController, PopoverController, ActionSheetController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { PopoverController } from '@ionic/angular'; 
 import { PopoverResultPage } from 'src/app/components/popover-result/popover-result.page';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage } from '@angular/fire/storage';
 import * as firebase from 'firebase';
-import { finalize } from 'rxjs/operators';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
@@ -18,21 +19,21 @@ export class ListPage implements OnInit {
   register: FormGroup;
   name: any;
   username: any;
-  downloadURL: any;
+  public lunch: string;
+  public refreshments: string;
+  hide: boolean = false;
+  chatRef: any;
+  key: string;
   ref: any;
+  downloadURL: any;
   id: string;
   uploadState: any;
-  key: string;
-  chatRef: any;
-  constructor(private fb: FormBuilder,
-     public modalController: ModalController,
-      public popoverController:PopoverController,
-      public Storage: AngularFireStorage,
-      public afAuth: AngularFireAuth,
-      private angularfire: AngularFirestore,
-      public actionSheetController: ActionSheetController,
-     
-      ) { 
+  constructor(private fb: FormBuilder, public modalController: ModalController,
+     public popoverController:PopoverController,
+     public Storage: AngularFireStorage,
+     public afAuth: AngularFireAuth,  private angularfire: AngularFirestore,
+     public actionSheetController: ActionSheetController,
+     ) { 
     this.register =  fb.group({
       // email: new FormControl('', Validators.compose([
       //   Validators.required,
@@ -74,10 +75,16 @@ export class ListPage implements OnInit {
     });
     return await popover.present();
   }
+
   async presentModal() {
     const modal = await this.modalController.create({
       component: ModalPage,
       animated: true
+    });
+
+    modal.onWillDismiss().then(dataReturned => {
+      this.lunch = dataReturned.data;
+      this.refreshments = dataReturned.role;
     });
     return await modal.present();
   }

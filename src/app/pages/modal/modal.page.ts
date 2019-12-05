@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal',
@@ -8,17 +9,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalPage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
-
-  public lunch = {
-    option1:''
-  };
+  constructor(public modalController: ModalController, private router: Router) { }
 
   ngOnInit() {
   }
 
-  async closeModal(){
-    await this.modalController.dismiss();
+  async closeModal(food, drinks){
+    console.info("Selected:",food, drinks);
+    await this.modalController.dismiss(food, drinks);     
   }
 
 }
