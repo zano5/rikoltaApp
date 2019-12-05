@@ -17,6 +17,10 @@ import { AngularFireModule } from '@angular/fire';
 import * as firebase from 'firebase'; 
 import { PopoverResultPageModule } from './components/popover-result/popover-result.module';
 import { PopoverPurchasePageModule } from './components/popover-purchase/popover-purchase.module';
+import { Popover1HelpPageModule } from './components/popover1-help/popover1-help.module';
+import { Popover2HelpPageModule } from './components/popover2-help/popover2-help.module';
+import { Popover3HelpPageModule } from './components/popover3-help/popover3-help.module';
+import { Popover4HelpPageModule } from './components/popover4-help/popover4-help.module';
 
 
 const firebaseConfig = {
@@ -44,7 +48,11 @@ const firebaseConfig = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     PopoverResultPageModule,
-    PopoverPurchasePageModule
+    PopoverPurchasePageModule,
+    Popover1HelpPageModule,
+    Popover2HelpPageModule,
+    Popover3HelpPageModule,
+    Popover4HelpPageModule
   ],
   providers: [
     StatusBar,

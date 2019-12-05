@@ -18,16 +18,16 @@
     </ion-list>
     <ion-row class="flex-container">
         <ion-col>
-            <ion-card class="flex-item">
+            <ion-card class="flex-item" (click)="popoverOverview()">
                 <h6 style="margin: 0.5em;padding: 0;">Overview</h6>
             </ion-card>
-            <ion-card class="flex-item">
+            <ion-card class="flex-item" (click)="popoverClaim()">
                 <h6 style="margin: 0.5em;padding: 0;">How to lodge a claim ?</h6>
             </ion-card>
-            <ion-card class="flex-item">
+            <ion-card class="flex-item" (click)="popoverApply()">
                 <h6 style="margin: 0.5em;padding: 0;">How to apply for funeral plan ?</h6>
             </ion-card>
-            <ion-card class="flex-item">
+            <ion-card class="flex-item" (click)="popoverContact()">
                 <h6 style="margin: 0.5em;padding: 0;">How do I contact offices ?</h6>
             </ion-card>
         </ion-col>
