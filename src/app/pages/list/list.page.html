@@ -9,43 +9,57 @@
     </ion-toolbar>
 </ion-header>
 
-<!-- <ion-header>
-    
-        <div class="image-upload" float-right>
-    <label for="file-input">
-        <ion-icon class="input" name="attach"> </ion-icon>
-    
-    <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
-  </label>
-  </div>
-      
-
-  </ion-header> -->
 <ion-content>
-
+<form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+     
     <ion-list style="margin: 0.5em;">
-        <form >
+
+       
+
         <ion-item-divider style="border-bottom:2px solid lightgray ;">
             <h5 style="font-weight: bolder;color: black;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Lodge a claim</h5>
         </ion-item-divider>
-        <ion-item>
+        <ion-item lines="full">
             <ion-icon name="card"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder=" Policy holder RSA ID"></ion-input>
+            <ion-input maxlength="13" formControlName="id" type="text"  required placeholder=" Policy holder RSA ID"form="id"></ion-input>
         </ion-item>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
+                ID number is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
+                Only numerical values allowed.
+              </span>
    
-        <ion-item>
+        <ion-item lines="full">
             <ion-icon name="person" ></ion-icon>&nbsp;
-            <ion-input type="text"name="name" [(ngModel)]="name" required placeholder="Claimant Full name"></ion-input>
+            <ion-input formControlName="name" type="text"  required placeholder="Claimant Full name" ></ion-input>
         </ion-item>
-    
-        <ion-item>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+                Name is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
+                Name should be min 2 chars long.
+              </span>
+        <ion-item lines="full">
             <ion-icon name="call"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder="Claimant Mobile Number"></ion-input>
+            <ion-input maxlength="10" formControlName="mobile" type="text"  required placeholder="Claimant Mobile Number"></ion-input>
         </ion-item>
-        <ion-item>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
+                Mobile number is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
+                Only numerical values allowed.
+              </span>
+        <ion-item lines="full">
             <ion-icon name="call"></ion-icon>&nbsp;
-            <ion-input type="number" required placeholder="Claimant alternative number"></ion-input>
+            <ion-input  maxlength="10" formControlName="mobile" type="text"  placeholder="Claimant alternative number"></ion-input>
         </ion-item>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
+                Mobile number is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
+                Only numerical values allowed.
+              </span>
         <!-- <ion-item>
             <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
             <ion-input type="file" required></ion-input>
@@ -61,7 +75,7 @@
                       </label>
                 </div>
             </ion-item>
-        </form>
+       
     </ion-list>
     <table *ngIf="hide" padding>
         <tr>
@@ -75,10 +89,16 @@
 
         </tr>
     </table>
+    <ion-row>
+            <ion-col>
+    <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium"  (click)="presentPopover()" (click)="submit()" >Submit</ion-button>
+</ion-col>
+</ion-row>
+</form>
 
 </ion-content>
-
+<!-- 
 <ion-footer text-center style="border: none;">
-    <ion-button style="text-transform: none;color: white;width: 50%;" color="medium" (click)="presentPopover()">Submit</ion-button>
+    <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium" >Submit</ion-button>
 
-</ion-footer>
+</ion-footer> -->
