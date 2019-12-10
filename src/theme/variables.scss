@@ -68,3 +68,17 @@
     --ion-color-light-shade: #d7d8da;
     --ion-color-light-tint: #f5f6f9;
 }
+
+ion-popover {
+    ion-backdrop {
+        opacity: 0.5 !important;
+    }
+    background-color: white;
+    // background: linear-gradient(silver, #5DADE2, #1B4F72);
+    .popover-wrapper {
+        .popover-content {
+            width: 80vw;
+            max-width: 500px;
+        }
+    }
+}

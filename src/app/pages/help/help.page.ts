@@ -23,6 +23,7 @@ export class HelpPage implements OnInit {
       translucent: true,
       animated: true
     });
+
     return await popover.present();
   }
 

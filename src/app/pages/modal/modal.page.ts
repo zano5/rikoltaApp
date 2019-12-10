@@ -16,7 +16,8 @@ export class ModalPage implements OnInit {
 
   async closeModal(food, drinks){
     console.info("Selected:",food, drinks);
-    await this.modalController.dismiss(food, drinks);     
+    await this.modalController.dismiss(food, drinks);   
+    // window.location.reload(true);
   }
 
 }

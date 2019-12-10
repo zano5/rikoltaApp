@@ -12,4 +12,10 @@ export class Popover2HelpPage implements OnInit {
   ngOnInit() {
   }
 
+  sliderConfig = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay:true,
+   
+  };
 }
