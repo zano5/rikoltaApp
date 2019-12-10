@@ -1,9 +1,49 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>popover3-help</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+
+    <ion-slides [options]="sliderConfig" pager="true" style="margin: 0.5em;">
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/apply1.PNG">
+        </ion-slide>
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/apply2.PNG">
+        </ion-slide>
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/landingPage.PNG">
+        </ion-slide>
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/sideNav.PNG">
+        </ion-slide>
+    </ion-slides>
+
+    <ion-slides [options]="slider2">
+        <ion-slide>
+            <ion-card>
+                <ion-card-content class="cardContent">
+                    <p>Registration to the app requres a valid email and South African ID</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <ion-card-content class="cardContent">
+                    <p>You can then log into the application using your email and your created password</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <ion-card-content class="cardContent">
+                    <p>Make your selection from the main page, out of the provided options</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <ion-card-content class="cardContent">
+                    <p>Alternatively, you can select an option from the side menu on the main page</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
 
 </ion-content>

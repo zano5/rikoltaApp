@@ -24,6 +24,11 @@ export class HelpPage implements OnInit {
       animated: true
     });
 
+    setTimeout(function () {
+      popover.dismiss();
+      window.location.reload(true);
+    }, 15000);
+
     return await popover.present();
   }
 
@@ -32,6 +37,12 @@ export class HelpPage implements OnInit {
       component: Popover2HelpPage,
       translucent: true
     });
+
+    setTimeout(function () {
+      popover.dismiss();
+      window.location.reload(true);
+    }, 15000);
+      
     return await popover.present();
   }
 
@@ -40,6 +51,12 @@ export class HelpPage implements OnInit {
       component: Popover3HelpPage,
       translucent: true
     });
+
+    setTimeout(function () {
+      popover.dismiss();
+      window.location.reload(true);
+    }, 15000);
+
     return await popover.present();
   }
 
@@ -48,6 +65,12 @@ export class HelpPage implements OnInit {
       component: Popover4HelpPage,
       translucent: true
     });
+
+    setTimeout(function () {
+      popover.dismiss();
+      window.location.reload(true);
+    }, 15000);
+
     return await popover.present();
   }
 

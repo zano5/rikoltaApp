@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-popover1-help',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Popover1HelpPage implements OnInit {
 
-  constructor() { }
+  constructor(public popover: PopoverController) { }
 
   ngOnInit() {
   }
@@ -16,13 +17,13 @@ export class Popover1HelpPage implements OnInit {
     initialSlide: 0,
     slidesPerView: 1,
     autoplay:true,
-    speed: 500
+    speed: 400
   };
   slider2 = {
     initialSlide: 0,
     slidesPerView: 1,
     autoplay:true,
-    speed: 500,
+    speed: 400,
     on: {
       beforeInit() {
         const swiper = this;
@@ -109,4 +110,5 @@ export class Popover1HelpPage implements OnInit {
       }
     }
   };
+
 }
