@@ -1,9 +1,39 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>popover4-help</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+
+    <ion-slides [options]="sliderConfig" pager="true" style="margin: 0.5em;">
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/contact1.PNG">
+        </ion-slide>
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/contact2.PNG">
+        </ion-slide>
+        <ion-slide>
+            <img style="border-radius:5px;" src="../../../assets/images/contact3.PNG">
+        </ion-slide>
+    </ion-slides>
+
+    <ion-slides [options]="slider2">
+        <ion-slide>
+            <ion-card>
+                <ion-card-content class="cardContent">
+                    <p>You can go to the contact page by selecting tile on screen</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <ion-card-content class="cardContent">
+                    <p>Alternatively, you can go to the contact page by selecting the side menu</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <ion-card-content class="cardContent">
+                    <p>View contact information, including mobile, tel, email and operating hours</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
 
 </ion-content>

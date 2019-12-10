@@ -69,7 +69,7 @@ export class HelpPage implements OnInit {
     setTimeout(function () {
       popover.dismiss();
       window.location.reload(true);
-    }, 15000);
+    }, 10000);
 
     return await popover.present();
   }
