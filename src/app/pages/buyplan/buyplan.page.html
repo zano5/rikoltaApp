@@ -11,31 +11,36 @@
 
 <ion-content>
     <ion-list padding>
-        <ion-item-divider style="border-bottom:2px solid lightgray ;">
+        <ion-item-divider style="border: none;">
             <h5 style="font-weight: bold;color: black;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Purchase {{pricePlan}}</h5>
         </ion-item-divider>
     </ion-list>
     <ion-list *ngIf="form == 1" padding>
-
+        <label>Full Name</label>
         <ion-item>
-            <ion-icon name="person"></ion-icon>&nbsp;
+            <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
             <ion-input type="text" [(ngModel)]="fullname" placeholder="Full name"></ion-input>
         </ion-item>
+        <label>Mobile Number</label>
         <ion-item>
-            <ion-icon name="call"></ion-icon>&nbsp;
+            <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
             <ion-input type="tel" [(ngModel)]="mobilenumber" placeholder="Mobile number"></ion-input>
         </ion-item>
+        <label>Email</label>
         <ion-item>
-            <ion-icon name="mail"></ion-icon>&nbsp;
+            <!-- <ion-icon name="mail"></ion-icon>&nbsp; -->
             <ion-input type="email" [(ngModel)]="email" placeholder="Email"></ion-input>
         </ion-item>
+        <label>RSA ID</label>
         <ion-item>
-            <ion-icon name="card"></ion-icon>&nbsp;
+            <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
             <ion-input type="number" [(ngModel)]="ID" placeholder="RSA ID"></ion-input>
         </ion-item>
+        <label>Address</label>
         <ion-item>
             <ion-label style="font-size: 18pt;color:grey" position="stacked">
-                <ion-icon name="pin"></ion-icon>Address</ion-label>
+                <!-- <ion-icon name="pin"></ion-icon>Address-->
+            </ion-label>
             <br>
             <ion-input placeholder="Address Line 1"></ion-input>
             <ion-input placeholder="Address Line 2"></ion-input>
@@ -43,20 +48,21 @@
             <ion-input placeholder="State"></ion-input>
             <ion-input placeholder="Zip Code"></ion-input>
         </ion-item>
+        <label>Monthly Income</label>
         <ion-item>
-            <ion-icon name="cash"></ion-icon>&nbsp;
+            <!-- <ion-icon name="cash"></ion-icon>&nbsp; -->
             <ion-input type="number" [(ngModel)]="income" placeholder="Monthly Income"></ion-input>
         </ion-item>
     </ion-list>
     <ion-list *ngIf="form == 2" padding>
         <ion-list *ngFor="let member of planMember;let i=index">
-            <h6>{{member}}</h6>
+            <label>{{member}}</label>
             <ion-item>
-                <ion-icon name="person"></ion-icon>&nbsp;
+                <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
                 <ion-input type="text" [(ngModel)]="fullname[i]" name="fullname[{{i}}]" placeholder="Full name"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-icon name="card"></ion-icon>&nbsp;
+                <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
                 <ion-input type="number" [(ngModel)]="ID[i]" name="ID[{{i}}]" placeholder="RSA ID"></ion-input>
             </ion-item>
         </ion-list>
@@ -64,5 +70,5 @@
 </ion-content>
 
 <ion-footer text-center style="border: none;">
-    <ion-button style="text-transform: none;color: white;width: 50%;" color="dark" (click)="Next()">Next</ion-button>
+    <ion-button style="width: 50%;" color="medium" (click)="Next()">Next</ion-button>
 </ion-footer>
