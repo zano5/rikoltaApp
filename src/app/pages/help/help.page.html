@@ -18,17 +18,30 @@
     </ion-list>
     <ion-row class="flex-container">
         <ion-col>
-            <ion-card class="flex-item-1" (click)="popoverOverview()">
-                <h6 style="margin: 0.5em;padding: 0;">Overview</h6>
+            <ion-card class="flex-item-1">
+                <ion-item (click)="popoverOverview()">
+                    <h6 style="margin: 0.5em;padding: 0;">Overview</h6>
+                    <ion-icon name="arrow-forward" slot="end"></ion-icon>
+                </ion-item>
+
             </ion-card>
-            <ion-card class="flex-item-2" (click)="popoverClaim()">
-                <h6 style="margin: 0.5em;padding: 0;">How to lodge a claim ?</h6>
+            <ion-card class="flex-item-2">
+                <ion-item (click)="popoverClaim()">
+                    <h6 style="margin: 0.5em;padding: 0;">How to lodge a claim ?</h6>
+                    <ion-icon name="arrow-forward" slot="end"></ion-icon>
+                </ion-item>
             </ion-card>
-            <ion-card class="flex-item-3" (click)="popoverApply()">
-                <h6 style="margin: 0.5em;padding: 0;">How to apply for funeral plan ?</h6>
+            <ion-card class="flex-item-3">
+                <ion-item (click)="popoverApply()">
+                    <h6 style="margin: 0.5em;padding: 0;">How to apply for funeral plan ?</h6>
+                    <ion-icon name="arrow-forward" slot="end"></ion-icon>
+                </ion-item>
             </ion-card>
-            <ion-card class="flex-item-4" (click)="popoverContact()">
-                <h6 style="margin: 0.5em;padding: 0;">How do I contact offices ?</h6>
+            <ion-card class="flex-item-4">
+                <ion-item (click)="popoverContact()">
+                    <h6 style="margin: 0.5em;padding: 0;">How do I contact offices ?</h6>
+                    <ion-icon name="arrow-forward" slot="end"></ion-icon>
+                </ion-item>
             </ion-card>
         </ion-col>
     </ion-row>

@@ -55,18 +55,6 @@
                 <ion-icon name="create"></ion-icon>&nbsp;
                 <ion-label style="color: gray; ">Menu/Food selection</ion-label>
             </ion-item>
-
-            <ion-item>
-
-                <div class="image-upload" float-right>
-                    <label for="file-input">
-                                <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
-                            <!-- <ion-icon class="input" name="attach"> </ion-icon> -->
-                        
-                        <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
-                      </label>
-                </div>
-            </ion-item>
         </form>
     </ion-list>
     <table *ngIf="hide" padding>
