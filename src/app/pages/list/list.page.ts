@@ -124,8 +124,11 @@ export class ListPage implements OnInit {
         this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
            console.log(urlfile);
            this.angularfire.collection('documents').add({
+            ID: this.ionicForm.value.id,
             Name: this.afAuth.auth.currentUser.displayName,
             image:urlfile,
+            Number: this.ionicForm.value.mobile,
+          AltNumber: this.ionicForm.value.mobile2,
             UserID: this.afAuth.auth.currentUser.uid,
             TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
         
@@ -145,8 +148,8 @@ export class ListPage implements OnInit {
       const userid = this.afAuth.auth.currentUser.uid;
   
         this.angularfire.collection('claims doc').add({
-         ID: this.ionicForm.value.name,
-         ClaimentName: this.ionicForm.value.id,
+         ID: this.ionicForm.value.id,
+         ClaimentName: this.ionicForm.value.name,
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
