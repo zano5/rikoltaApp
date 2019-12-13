@@ -2,18 +2,14 @@
     <ion-toolbar color="dark">
         <ion-buttons slot="start">
             <ion-menu-button>
-
             </ion-menu-button>
         </ion-buttons>
         <ion-title> Claims</ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content text-center>
     <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
-
-        <ion-list text-left style="margin: 0.5em;">
-
+        <ion-list text-left style="margin: 0.5em;" padding>
             <label>RSA ID</label>
             <ion-item lines="full">
                 <!-- <ion-icon color="medium" name="card"></ion-icon>&nbsp; -->
@@ -88,12 +84,10 @@
             <tr>
                 <th>Lunch</th>
                 <th>Refreshments</th>
-
             </tr>
             <tr>
                 <td>{{lunch | json}}</td>
                 <td>{{refreshments | json}}</td>
-
             </tr>
         </table>
         <ion-row>
@@ -102,10 +96,8 @@
             </ion-col>
         </ion-row>
     </form>
-
 </ion-content>
 <!-- 
 <ion-footer text-center style="border: none;">
     <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium" >Submit</ion-button>
-
 </ion-footer> -->

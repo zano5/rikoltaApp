@@ -87,13 +87,18 @@ export class ListPage implements OnInit {
       return false;
     } else {
       console.log(this.ionicForm.value)
+      this.presentPopover();
     }
 
   }
 
   async presentPopover() {
     const popover = await this.popoverController.create({
+<<<<<<< HEAD
       component: PopoverResultPage,
+=======
+      component: PopoverResultPage, 
+>>>>>>> 42401c1ab7ca57b17292df17f58a98def1f0008e
       translucent: true
     });
     return await popover.present();
@@ -112,9 +117,9 @@ export class ListPage implements OnInit {
     return await modal.present();
   }
   upload(event) {
-    const file= event.target.files[0];
-     this.id = Math.random().toString(36).substring(2);
-    const filepath=this.id;
+    const file = event.target.files[0];
+    this.id = Math.random().toString(36).substring(2);
+    const filepath = this.id;
     this.ref = this.Storage.ref(filepath);
     const task = this.Storage.upload(filepath, file);
     this.uploadState = task.percentageChanges();
@@ -123,8 +128,11 @@ export class ListPage implements OnInit {
         this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
            console.log(urlfile);
            this.angularfire.collection('documents').add({
+            ID: this.ionicForm.value.id,
             Name: this.afAuth.auth.currentUser.displayName,
             image:urlfile,
+            Number: this.ionicForm.value.mobile,
+          AltNumber: this.ionicForm.value.mobile2,
             UserID: this.afAuth.auth.currentUser.uid,
             TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
         
@@ -144,14 +152,20 @@ export class ListPage implements OnInit {
       const userid = this.afAuth.auth.currentUser.uid;
   
         this.angularfire.collection('claims doc').add({
-         ID: this.ionicForm.value.name,
-         ClaimentName: this.ionicForm.value.id,
+         ID: this.ionicForm.value.id,
+         ClaimentName: this.ionicForm.value.name,
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
+          
           // image:urlfile,
         }).then(() => {
+<<<<<<< HEAD
           this.presentPopover();
+=======
+          
+          // this.router.navigateByUrl('');
+>>>>>>> 42401c1ab7ca57b17292df17f58a98def1f0008e
         }).catch(err =>{
           alert(err.message)
         })
