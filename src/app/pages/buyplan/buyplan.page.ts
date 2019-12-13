@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular'; 
 import { PopoverPurchasePage } from 'src/app/components/popover-purchase/popover-purchase.page';
 import { Validators, FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-buyplan',
@@ -19,7 +21,8 @@ export class BuyplanPage implements OnInit {
   pricePlan:string;
   form:number;
   planMember = [];
-  constructor(public FormBuilder: FormBuilder,private router:Router,private activatedRoute:ActivatedRoute,private popoverController:PopoverController ) {
+  constructor(public FormBuilder: FormBuilder,private router:Router,private activatedRoute:ActivatedRoute,
+    private popoverController:PopoverController,private angularfire: AngularFirestore ) {
     this.form = 1;
    }
 
@@ -58,8 +61,7 @@ export class BuyplanPage implements OnInit {
     }); 
 
   } 
-  addNewInputField(){
-    
+  addNewInputField(member){   
     const control = <FormArray>this.membersForm.controls.members;
     if (control.length < this.planMember.length) {
       control.push(this.addingFields());
@@ -85,7 +87,7 @@ export class BuyplanPage implements OnInit {
   }
   Next(){ 
     if (this.form < 2) {
-      console.log(this.ionicForm.value);
+      
       this.form += 1;
     }else{ 
       
@@ -97,6 +99,7 @@ export class BuyplanPage implements OnInit {
     } 
   } 
   submit(){
+    console.log(this.ionicForm.value);
     console.log(this.membersForm.value);  
   }
   async presentPopover() {
