@@ -9,66 +9,125 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content text-center>
     <ion-list padding>
         <ion-item-divider style="border: none;">
-            <h5 style="font-weight: bold;color: black;font-family: 'Nunito', sans-serif;width: 100%;" text-center>Purchase {{pricePlan}}</h5>
+            <h5 style="font-weight: bold;color: black;font-family: 'Nunito', sans-serif;width: 100%;" text-center>{{pricePlan}}</h5>
         </ion-item-divider>
     </ion-list>
-    <ion-list *ngIf="form == 1" padding>
-        <label>Full Name</label>
-        <ion-item>
-            <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
-            <ion-input type="text" [(ngModel)]="fullname" placeholder="Full name"></ion-input>
-        </ion-item>
-        <label>Mobile Number</label>
-        <ion-item>
-            <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-            <ion-input type="tel" [(ngModel)]="mobilenumber" placeholder="Mobile number"></ion-input>
-        </ion-item>
-        <label>Email</label>
-        <ion-item>
-            <!-- <ion-icon name="mail"></ion-icon>&nbsp; -->
-            <ion-input type="email" [(ngModel)]="email" placeholder="Email"></ion-input>
-        </ion-item>
-        <label>RSA ID</label>
-        <ion-item>
-            <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
-            <ion-input type="number" [(ngModel)]="ID" placeholder="RSA ID"></ion-input>
-        </ion-item>
-        <label>Address</label>
-        <ion-item>
-            <ion-label style="font-size: 18pt;color:grey" position="stacked">
-                <!-- <ion-icon name="pin"></ion-icon>Address-->
-            </ion-label>
-            <br>
-            <ion-input placeholder="Address Line 1"></ion-input>
-            <ion-input placeholder="Address Line 2"></ion-input>
-            <ion-input placeholder="City"></ion-input>
-            <ion-input placeholder="State"></ion-input>
-            <ion-input placeholder="Zip Code"></ion-input>
-        </ion-item>
-        <label>Monthly Income</label>
-        <ion-item>
-            <!-- <ion-icon name="cash"></ion-icon>&nbsp; -->
-            <ion-input type="number" [(ngModel)]="income" placeholder="Monthly Income"></ion-input>
-        </ion-item>
-    </ion-list>
-    <ion-list *ngIf="form == 2" padding>
-        <ion-list *ngFor="let member of planMember;let i=index">
-            <label>{{member}}</label>
+    <form [formGroup]="ionicForm" *ngIf="form == 1">
+        <ion-list text-left style="margin: 0.5em;" *ngIf="form == 1" padding>
+            <label>Full Name</label>
             <ion-item>
                 <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
-                <ion-input type="text" [(ngModel)]="fullname[i]" name="fullname[{{i}}]" placeholder="Full name"></ion-input>
+                <ion-input type="text" formControlName="Fullname" required placeholder="Full name"></ion-input>
             </ion-item>
+            <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('pattern')">
+                Number must be only chars
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('required')">
+                Name is required
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('minlength')">
+                Name should be atleast 2 chars long.
+              </span><br>
+            <label>Mobile Number</label>
+            <ion-item>
+                <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
+                <ion-input type="tel" formControlName="mobilenumber" required placeholder="Mobile number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('minlength')">
+                Number must be 10 chars long
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('required')">
+                Number is required
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('pattern')">
+                Number must be digits
+              </span><br>
+            <label>Email</label>
+            <ion-item>
+                <!-- <ion-icon name="mail"></ion-icon>&nbsp; -->
+                <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="ionicForm.get('email').hasError('required')">
+                RSA is required
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('email').hasError('pattern')">
+                Email address not valid
+              </span><br>
+            <label>RSA ID</label>
             <ion-item>
                 <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
-                <ion-input type="number" [(ngModel)]="ID[i]" name="ID[{{i}}]" placeholder="RSA ID"></ion-input>
+                <ion-input type="tel" formControlName="ID" required placeholder="RSA ID"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('required')">
+                RSA is required
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('minlength')">
+                ID must be 13 digits long
+              </span><br>
+            <label>Address</label>
+            <ion-item>
+                <ion-label style="font-size: 18pt;color:grey" position="stacked">
+                    <!-- <ion-icon name="pin"></ion-icon>Address-->
+                </ion-label>
+                <br>
+                <ion-input formControlName="addressline1" placeholder="Address Line 1"></ion-input>
+                <ion-input formControlName="addressline2" placeholder="Address Line 2"></ion-input>
+                <ion-input formControlName="addresscity" placeholder="City"></ion-input>
+                <ion-input formControlName="addressstate" placeholder="State"></ion-input>
+                <ion-input formControlName="addresszipcode" placeholder="Zip Code"></ion-input>
+            </ion-item>
+            <label>Monthly Income</label>
+            <ion-item>
+                <!-- <ion-icon name="cash"></ion-icon>&nbsp; -->
+                <ion-input type="tel" formControlName="income" required placeholder="Monthly Income"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('minlength')">
+                Income must be atleast 3 chars long
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('required')">
+                Income is required
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('pattern')">
+                Income must be digits
+              </span><br>
+
+            <!-- <ion-button type="submit" style="width: 50%;" [disabled]="!ionicForm.valid" color="dark" (click)="Next()">Next</ion-button> -->
+        </ion-list>
+        <ion-button type="submit" style="width: 50%;" color="dark" (click)="Next()">Next</ion-button>
+
+    </form>
+    <form [formGroup]="membersForm" *ngIf="form == 2">
+        <ion-list text-left formArrayName="members" *ngIf="form == 2" padding>
+            <ion-list [formGroupName]="i" *ngFor="let member of membersForm.controls.members.controls; let i = index">
+                <label>Full name</label>
+                <ion-item>
+                    <ion-input type="text" required formControlName="memberName" placeholder="Full name"></ion-input>
+                </ion-item>
+                <label>RSA ID</label>
+                <ion-item>
+                    <ion-input type="text" formControlName="memberID" placeholder="RSA ID"></ion-input>
+                </ion-item>
+                <ion-button type="button" style="width: 48%;" color="light" (click)="addNewInputField()">Add Member</ion-button>
+                <ion-button type="button" style="width: 48%;" color="danger" *ngIf="membersForm.controls.members.length > 1" (click)="RemoveInputField(i)">Remove Member</ion-button>
+            </ion-list>
+        </ion-list>
+        <ion-button type="submit" style="width: 50%;" color="dark" (click)="submit()">Submit</ion-button>
+    </form>
+    <!-- <ion-list text-left style="margin: 0.5em;" *ngIf="form == 2" padding>
+        <ion-list *ngFor="let member of planMember;let i=index">
+            <label>{{member}}</label>
+            <ion-item> -->
+    <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
+    <!-- <ion-input type="text" [(ngModel)]="fullname[i]" name="fullname[{{i}}]" placeholder="Full name"></ion-input>
+            </ion-item>
+            <ion-item> -->
+    <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
+    <!-- <ion-input type="number" [(ngModel)]="ID[i]" name="ID[{{i}}]" placeholder="RSA ID"></ion-input>
             </ion-item>
         </ion-list>
-    </ion-list>
-</ion-content>
+    </ion-list> -->
 
-<ion-footer text-center style="border: none;">
-    <ion-button style="width: 50%;" color="dark" (click)="Next()">Next</ion-button>
-</ion-footer>
+</ion-content>
