@@ -77,7 +77,12 @@
                       </label>
                 </div>
             </ion-item>
-
+            <br>
+            <label>Menu Selection</label>
+            <ion-item lines="full">
+                <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
+                <ion-input type="text" placeholder="Catering" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
+            </ion-item>
         </ion-list>
         <table *ngIf="hide" padding>
             <tr>
@@ -93,7 +98,7 @@
         </table>
         <ion-row>
             <ion-col>
-                <ion-button type="submit" style="width: 50%" color="medium" (click)="presentPopover()" (click)="submit()">Submit</ion-button>
+                <ion-button type="submit" style="width: 50%" color="medium" (click)="submit()">Submit</ion-button>
             </ion-col>
         </ion-row>
     </form>

@@ -91,10 +91,9 @@ export class ListPage implements OnInit {
 
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover() {
     const popover = await this.popoverController.create({
       component: PopoverResultPage,
-      event: ev,
       translucent: true
     });
     return await popover.present();
@@ -152,7 +151,7 @@ export class ListPage implements OnInit {
           userid: this.afAuth.auth.currentUser.uid,
           // image:urlfile,
         }).then(() => {
-          // this.router.navigateByUrl('');
+          this.presentPopover();
         }).catch(err =>{
           alert(err.message)
         })
