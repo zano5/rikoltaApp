@@ -23,7 +23,7 @@
                 <ion-input type="text" formControlName="Fullname" required placeholder="Full name"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('pattern')">
-                Number must be only chars
+                Name must be only chars
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('required')">
                 *Name is required
@@ -93,7 +93,7 @@
 
 
         </ion-list>
-        <ion-button type="submit" style="width: 50%;" [disabled]="!ionicForm.valid" color="dark" (click)="Next()">Next</ion-button>
+        <ion-button style="width: 50%;" [disabled]="!ionicForm.valid" color="dark" (click)="Next()">Next</ion-button>
 
     </form>
     <form [formGroup]="membersForm" *ngIf="form == 2">
@@ -129,7 +129,7 @@
                 <ion-button type="button" style="width: 48%;" color="danger" *ngIf="membersForm.controls.members.length > 1" (click)="RemoveInputField(i)">Remove Member</ion-button>
             </ion-list>
         </ion-list>
-        <ion-button type="submit" style="width: 50%;" [disabled]="!membersForm.valid" color="dark" (click)="submit()">Submit</ion-button>
+        <ion-button style="width: 50%;" [disabled]="!membersForm.valid" color="dark" (click)="submit()">Submit</ion-button>
     </form>
     <!-- <ion-list text-left style="margin: 0.5em;" *ngIf="form == 2" padding>
         <ion-list *ngFor="let member of planMember;let i=index">
