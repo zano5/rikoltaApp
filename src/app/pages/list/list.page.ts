@@ -94,11 +94,7 @@ export class ListPage implements OnInit {
 
   async presentPopover() {
     const popover = await this.popoverController.create({
-<<<<<<< HEAD
       component: PopoverResultPage,
-=======
-      component: PopoverResultPage, 
->>>>>>> 42401c1ab7ca57b17292df17f58a98def1f0008e
       translucent: true
     });
     return await popover.present();
@@ -160,12 +156,9 @@ export class ListPage implements OnInit {
           
           // image:urlfile,
         }).then(() => {
-<<<<<<< HEAD
           this.presentPopover();
-=======
           
           // this.router.navigateByUrl('');
->>>>>>> 42401c1ab7ca57b17292df17f58a98def1f0008e
         }).catch(err =>{
           alert(err.message)
         })
