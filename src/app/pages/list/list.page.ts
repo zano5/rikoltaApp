@@ -38,9 +38,6 @@ export class ListPage implements OnInit {
   uploadState: any;
   list: any;
   
-  // donation = {} as Donation
-  // infor = {} as NewType;
-
   constructor(private fb: FormBuilder, public modalController: ModalController,
      public popoverController:PopoverController,
      public Storage: AngularFireStorage,
@@ -87,14 +84,14 @@ export class ListPage implements OnInit {
       return false;
     } else {
       console.log(this.ionicForm.value)
+      this.presentPopover();
     }
 
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover() {
     const popover = await this.popoverController.create({
-      component: PopoverResultPage,
-      event: ev,
+      component: PopoverResultPage, 
       translucent: true
     });
     return await popover.present();
@@ -113,9 +110,9 @@ export class ListPage implements OnInit {
     return await modal.present();
   }
   upload(event) {
-    const file= event.target.files[0];
-     this.id = Math.random().toString(36).substring(2);
-    const filepath=this.id;
+    const file = event.target.files[0];
+    this.id = Math.random().toString(36).substring(2);
+    const filepath = this.id;
     this.ref = this.Storage.ref(filepath);
     const task = this.Storage.upload(filepath, file);
     this.uploadState = task.percentageChanges();
@@ -148,13 +145,16 @@ export class ListPage implements OnInit {
       const userid = this.afAuth.auth.currentUser.uid;
   
         this.angularfire.collection('claims doc').add({
-         ID: this.ionicForm.value.id,
-         ClaimentName: this.ionicForm.value.name,
+          ID: this.ionicForm.value.id,
+          ClaimentName: this.ionicForm.value.name,
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
+          TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
+        
           // image:urlfile,
         }).then(() => {
+          
           // this.router.navigateByUrl('');
         }).catch(err =>{
           alert(err.message)

@@ -2,13 +2,11 @@
     <ion-toolbar color="dark">
         <ion-buttons slot="start">
             <ion-menu-button>
-
             </ion-menu-button>
         </ion-buttons>
         <ion-title> Claims</ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content text-center>
    <ion-grid>
     <ion-row >
@@ -70,38 +68,18 @@
             <label>Death Certificate</label>
             <ion-item>
                 <div class="image-upload" float-right>
-                    <label for="file-input"> 
+                    <label for="file-input">
                                 <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp; -->
-                            <!-- <ion-icon class="input" name="attach"> </ion-icon>
-                         -->
+                            <!-- <ion-icon class="input" name="attach"> </ion-icon> -->
+                        
                         <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
                       </label>
                 </div>
-            </ion-item> 
-</form>
-        </ion-list>
-        <table *ngIf="hide" padding>
-            <tr>
-                <th>Lunch</th>
-                <th>Refreshments</th>
-
-            </tr>
-            <tr>
-                <td>{{lunch | json}}</td>
-                <td>{{refreshments | json}}</td>
-
-            </tr>
-        </table>
-       
-                <ion-button type="submit" style="width: 50%" color="medium" (click)="presentPopover()" (click)="submit()">Submit</ion-button>
+            </ion-item>
+    
+        <ion-row>
+            <ion-col>
+                <ion-button type="submit" style="width: 50%" color="dark" (click)="submit()">Submit</ion-button>
             </ion-col>
         </ion-row>
-  
-</ion-grid>
-
-</ion-content>
-<!-- 
-<ion-footer text-center style="border: none;">
-    <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium" >Submit</ion-button>
-
-</ion-footer> -->
+    </form>
