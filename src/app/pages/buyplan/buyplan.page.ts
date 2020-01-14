@@ -5,6 +5,7 @@ import { PopoverPurchasePage } from 'src/app/components/popover-purchase/popover
 import { Validators, FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
+import { PopoverResultPage } from 'src/app/components/popover-result/popover-result.page';
 
 @Component({
   selector: 'app-buyplan',
@@ -21,6 +22,7 @@ export class BuyplanPage implements OnInit {
   pricePlan:string;
   form:number;
   planMember = [];
+  buyerAddress = {};
   constructor(public FormBuilder: FormBuilder,private router:Router,private activatedRoute:ActivatedRoute,
     private popoverController:PopoverController,private angularfire: AngularFirestore ) {
     this.form = 1;
@@ -99,14 +101,31 @@ export class BuyplanPage implements OnInit {
     } 
   } 
   submit(){
+    this.buyerAddress = {
+      addressline1:this.ionicForm.value.addressline1,
+      addressline2:this.ionicForm.value.addressline2,
+      addresscity:this.ionicForm.value.addresscity,
+      addressstate:this.ionicForm.value.addressstate,
+      addresszipcode:this.ionicForm.value.addresszipcode,
+    }
     console.log(this.ionicForm.value);
-    console.log(this.membersForm.value);  
+    console.log(this.membersForm.value.members);  
+    this.angularfire.collection('Purchase').add({
+      BuyerFullName:this.ionicForm.value.Fullname,
+      BuyerMobileNumber:this.ionicForm.value.mobilenumber,
+      BuyerEmail:this.ionicForm.value.email,
+      BuyerID:this.ionicForm.value.ID,
+      BuyerAddress:this.buyerAddress,
+      BuyerMembers:this.membersForm.value.members
+    });
+    this.router.navigateByUrl('/menu/main')
+    this.presentPopover();
   }
   async presentPopover() {
     const popover = await this.popoverController.create({
-      component: PopoverPurchasePage, 
+      component: PopoverResultPage, 
       translucent: true
     });
     return await popover.present();
-  }
+  } 
 }

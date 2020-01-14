@@ -77,7 +77,7 @@
             <label>Menu Selection</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input type="text" placeholder="Catering" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
+                <ion-input type="text" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
             </ion-item>
         </ion-list>
         <table *ngIf="hide" padding>

@@ -37,9 +37,8 @@ export class ListPage implements OnInit {
   id: string;
   uploadState: any;
   list: any;
-  
-  // donation = {} as Donation
-  // infor = {} as NewType;
+  image: any;
+
 
   constructor(private fb: FormBuilder, public modalController: ModalController,
      public popoverController:PopoverController,
@@ -47,17 +46,12 @@ export class ListPage implements OnInit {
      public afAuth: AngularFireAuth, 
       private angularfire: AngularFirestore,
      public actionSheetController: ActionSheetController,
-    //  private angularfire: AngularFirestore,
-      // private afAuth: AngularFireAuth,
        public alertController: AlertController,
        public router:Router,
        private authService: AuthService,
        public FormBuilder: FormBuilder,
      ) { 
-  
-    // this.key = this.afAuth.auth.currentUser.uid;
-    // this.chatRef = this.angularfire.collection('documents',ref=>ref.orderBy('TimeStamp')).valueChanges();
-   
+
   }
 
   ngOnInit() {
@@ -123,28 +117,15 @@ export class ListPage implements OnInit {
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
            console.log(urlfile);
-           this.angularfire.collection('documents').add({
-            ID: this.ionicForm.value.id,
-            Name: this.afAuth.auth.currentUser.displayName,
-            image:urlfile,
-            Number: this.ionicForm.value.mobile,
-          AltNumber: this.ionicForm.value.mobile2,
-            UserID: this.afAuth.auth.currentUser.uid,
-            TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
-        
-            
-          });
-         
+
+            this.image = urlfile
           });
         })
       ).subscribe();
     }
-    // async documents(infor:infor)
     
 
     submit(){
-      // this.authService.signup(this.register.value.email, this.register.value.password).then((value) =>{
-      //   localStorage.setItem('userid', this.afAuth.auth.currentUser.uid)
       const userid = this.afAuth.auth.currentUser.uid;
   
         this.angularfire.collection('claims doc').add({
@@ -153,19 +134,19 @@ export class ListPage implements OnInit {
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
+          image: this.image,
+          TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
           
-          // image:urlfile,
         }).then(() => {
           this.presentPopover();
-          
-          // this.router.navigateByUrl('');
+          ;
         }).catch(err =>{
           alert(err.message)
         })
         this.afAuth.auth.currentUser.updateProfile({
           displayName: this.ionicForm.value.name,
         })
-      // });
+
     }
   
     
