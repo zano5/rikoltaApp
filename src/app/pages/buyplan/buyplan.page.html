@@ -25,8 +25,8 @@
             <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('pattern')">
                 Name must be only chars
               </span>
-            <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('required')">
-                *Name is required
+            <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('required') && ionicForm.get('Fullname').touched">
+                Please enter your name
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('minlength')">
                 Name should be atleast 2 chars long.
@@ -39,8 +39,8 @@
             <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('minlength')">
                 Number must be 10 chars long
               </span>
-            <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('required')">
-                *Number is required
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('required') && ionicForm.get('mobilenumber').touched">
+                Number is required
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('pattern')">
                 Number must be digits
@@ -58,8 +58,8 @@
                 <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
                 <ion-input type="tel" formControlName="ID" required placeholder="RSA ID"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('required')">
-                *RSA is required
+            <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('required') && ionicForm.get('ID').touched ">
+                Please enter your ID
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('minlength')">
                 ID must be 13 digits long
@@ -84,8 +84,8 @@
             <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('minlength')">
                 Income must be atleast 3 chars long
               </span>
-            <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('required')">
-                *Income is required
+            <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('required') && ionicForm.get('income').touched">
+                Please enter your income
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('pattern')">
                 Income must be digits

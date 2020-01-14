@@ -76,14 +76,31 @@
                       </label>
                 </div>
             </ion-item>
-       <ion-button type="submit" style="width: 50%" color="dark" (click)="submit()"  [disabled]="!ionicForm.valid">Submit</ion-button>
-    <!-- </ion-list>
-    <ion-col>
-    </ion-row>
-    </ion-grid> -->
-        </form>
-        <!-- </ion-content> -->
-
-
-        
-    
+            <br>
+            <label>Menu Selection</label>
+            <ion-item lines="full">
+                <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
+                <ion-input type="text" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
+            </ion-item>
+        </ion-list>
+        <table *ngIf="hide" padding>
+            <tr>
+                <th>Lunch</th>
+                <th>Refreshments</th>
+            </tr>
+            <tr>
+                <td>{{lunch | json}}</td>
+                <td>{{refreshments | json}}</td>
+            </tr>
+        </table>
+        <ion-row>
+            <ion-col>
+                <ion-button type="submit" style="width: 50%" color="medium" (click)="submit()">Submit</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>
+<!-- 
+<ion-footer text-center style="border: none;">
+    <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium" >Submit</ion-button>
+</ion-footer> -->

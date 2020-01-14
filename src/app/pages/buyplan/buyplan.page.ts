@@ -50,7 +50,7 @@ export class BuyplanPage implements OnInit {
       ])
     })
     this.ionicForm = this.FormBuilder.group({
-      Fullname: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z]*')]],
+      Fullname: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]],
       email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]], 
       mobilenumber: ['', [Validators.required, Validators.minLength(10),Validators.pattern('^[0-9]+$')]],
       income: ['', [Validators.required, Validators.minLength(3),Validators.pattern('^[0-9]+$')]],
@@ -80,7 +80,7 @@ export class BuyplanPage implements OnInit {
   }
   addingFields(): FormGroup {
     return this.FormBuilder.group({
-      memberName: ['',[Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z]*')]],
+      memberName: ['',[Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]],
       memberID: ['', [Validators.required, Validators.minLength(13),Validators.pattern('^[0-9]+$')]]
     });
   }
