@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
+import { AngularFireAuth } from '@angular/fire/auth'; 
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-main',
@@ -8,10 +10,13 @@ import { Router } from '@angular/router';
 })
 export class MainPage implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router) {
+
+   }
 
   ngOnInit() {
-    
+    var user = firebase.auth().currentUser;
+    console.log(user);
   }
 
   // ---------------------------------------------------

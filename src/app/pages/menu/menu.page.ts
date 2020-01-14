@@ -37,7 +37,9 @@ export class MenuPage implements OnInit {
       icon: 'help',
     },
   ];
-  constructor(private navCtrl: NavController, public afAuth: AngularFireAuth) { }
+  constructor(private navCtrl: NavController, public afAuth: AngularFireAuth) {  
+
+  }
 
   ngOnInit() {
   }

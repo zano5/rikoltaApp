@@ -37,45 +37,25 @@ export class ListPage implements OnInit {
   id: string;
   uploadState: any;
   list: any;
-  
-  // donation = {} as Donation
-  // infor = {} as NewType;
+  filePath:any; 
 
   constructor(private fb: FormBuilder, public modalController: ModalController,
      public popoverController:PopoverController,
      public Storage: AngularFireStorage,
      public afAuth: AngularFireAuth, 
-      private angularfire: AngularFirestore,
-     public actionSheetController: ActionSheetController,
-    //  private angularfire: AngularFirestore,
-      // private afAuth: AngularFireAuth,
-       public alertController: AlertController,
-       public router:Router,
-       private authService: AuthService,
+      private angularfire: AngularFirestore,  
+       public router:Router, 
        public FormBuilder: FormBuilder,
-     ) { 
-  
-    // this.key = this.afAuth.auth.currentUser.uid;
-    // this.chatRef = this.angularfire.collection('documents',ref=>ref.orderBy('TimeStamp')).valueChanges();
-   
-  }
+     ) { }
 
   ngOnInit() {
     this.ionicForm = this.FormBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      dob: [this.defaultDate],
-      mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      mobile2: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      id: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      name: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]], 
+      mobile: ['', [Validators.required,Validators.minLength(10), Validators.pattern('^[0-9]+$')]],
+      mobile2: ['', [Validators.required,Validators.minLength(10), Validators.pattern('^[0-9]+$')]],
+      id: ['', [Validators.required,Validators.minLength(13), Validators.pattern('^[0-9]+$')]],
     })
-  } 
-  getDate(e) {
-    let date = new Date(e.target.value).toISOString().substring(0, 10);
-    this.ionicForm.get('dob').setValue(date, {
-      onlyself: true
-    })
-  }
+  }  
 
   get errorControl() {
     return this.ionicForm.controls;
@@ -123,17 +103,18 @@ export class ListPage implements OnInit {
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
            console.log(urlfile);
-           this.angularfire.collection('documents').add({
-            ID: this.ionicForm.value.id,
-            Name: this.afAuth.auth.currentUser.displayName,
-            image:urlfile,
-            Number: this.ionicForm.value.mobile,
-          AltNumber: this.ionicForm.value.mobile2,
-            UserID: this.afAuth.auth.currentUser.uid,
-            TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
+           this.filePath = urlfile;
+          //  this.angularfire.collection('documents').add({
+          //   ID: this.ionicForm.value.id,
+          //   Name: this.afAuth.auth.currentUser.displayName,
+          //   image:urlfile,
+          //   Number: this.ionicForm.value.mobile,
+          // AltNumber: this.ionicForm.value.mobile2,
+          //   UserID: this.afAuth.auth.currentUser.uid,
+          //   TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
         
             
-          });
+          // });
          
           });
         })
@@ -142,7 +123,7 @@ export class ListPage implements OnInit {
     // async documents(infor:infor)
     
 
-    submit(){
+    submit(){ 
       // this.authService.signup(this.register.value.email, this.register.value.password).then((value) =>{
       //   localStorage.setItem('userid', this.afAuth.auth.currentUser.uid)
       const userid = this.afAuth.auth.currentUser.uid;
@@ -153,7 +134,7 @@ export class ListPage implements OnInit {
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
-          
+          image:this.filePath
           // image:urlfile,
         }).then(() => {
           this.presentPopover();

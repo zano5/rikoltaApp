@@ -17,7 +17,8 @@ export class AuthService {
     private router: Router,
      public afAuth: AngularFireAuth,
     //  public angularFireAuth:AngularFireAuth,
-      private alertCtrl : AlertController ) { 
+      private alertCtrl : AlertController ) {  
+
     // afAuth.auth.onAuthStateChanged((user)=>{
     //   if(user){
     //     this.router.navigateByUrl("menu");
@@ -51,7 +52,7 @@ export class AuthService {
   //   })
   // }
   async login(email: string, password: string) {
-    return await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    return await this.afAuth.auth.signInWithEmailAndPassword(email, password); 
   }
  
   async signup(email: string, password: string) {
