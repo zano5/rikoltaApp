@@ -38,7 +38,8 @@ export class ListPage implements OnInit {
   uploadState: any;
   list: any;
   
-  constructor(private fb: FormBuilder, public modalController: ModalController,
+  constructor(private fb: FormBuilder,
+     public modalController: ModalController,
      public popoverController:PopoverController,
      public Storage: AngularFireStorage,
      public afAuth: AngularFireAuth, 
@@ -91,7 +92,7 @@ export class ListPage implements OnInit {
 
   async presentPopover() {
     const popover = await this.popoverController.create({
-      component: PopoverResultPage, 
+      component: PopoverResultPage,
       translucent: true
     });
     return await popover.present();
@@ -154,8 +155,7 @@ export class ListPage implements OnInit {
         
           // image:urlfile,
         }).then(() => {
-          
-          // this.router.navigateByUrl('');
+          this.presentPopover();
         }).catch(err =>{
           alert(err.message)
         })

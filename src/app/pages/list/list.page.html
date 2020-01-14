@@ -12,7 +12,7 @@
     <ion-row >
         <ion-col >
         <ion-list text-left style="margin: 0.5em;">
-            <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+            <form [formGroup]="ionicForm" class="form">
             <label>RSA ID</label>
             <ion-item lines="full">
                 <!-- <ion-icon color="medium" name="card"></ion-icon>&nbsp; -->
@@ -64,22 +64,26 @@
             <!-- <ion-item>
             <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
             <ion-input type="file" required></ion-input>
-        </ion-item> -->
+        </ion-item>  -->
             <label>Death Certificate</label>
             <ion-item>
                 <div class="image-upload" float-right>
-                    <label for="file-input">
-                                <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp; -->
-                            <!-- <ion-icon class="input" name="attach"> </ion-icon> -->
+                    <label for="file-input"> 
+                                <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
+                            <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
                         
-                        <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+                    <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
                       </label>
                 </div>
             </ion-item>
+       <ion-button type="submit" style="width: 50%" color="dark" (click)="submit()"  [disabled]="!ionicForm.valid">Submit</ion-button>
+    <!-- </ion-list>
+    <ion-col>
+    </ion-row>
+    </ion-grid> -->
+        </form>
+        <!-- </ion-content> -->
+
+
+        
     
-        <ion-row>
-            <ion-col>
-                <ion-button type="submit" style="width: 50%" color="dark" (click)="submit()">Submit</ion-button>
-            </ion-col>
-        </ion-row>
-    </form>
