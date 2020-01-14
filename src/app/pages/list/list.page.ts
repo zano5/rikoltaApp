@@ -37,16 +37,22 @@ export class ListPage implements OnInit {
   id: string;
   uploadState: any;
   list: any;
-  filePath:any; 
+  image: any;
+
 
   constructor(private fb: FormBuilder, public modalController: ModalController,
      public popoverController:PopoverController,
      public Storage: AngularFireStorage,
      public afAuth: AngularFireAuth, 
-      private angularfire: AngularFirestore,  
-       public router:Router, 
+      private angularfire: AngularFirestore,
+     public actionSheetController: ActionSheetController,
+       public alertController: AlertController,
+       public router:Router,
+       private authService: AuthService,
        public FormBuilder: FormBuilder,
-     ) { }
+     ) { 
+
+  }
 
   ngOnInit() {
     this.ionicForm = this.FormBuilder.group({
@@ -103,29 +109,15 @@ export class ListPage implements OnInit {
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
            console.log(urlfile);
-           this.filePath = urlfile;
-          //  this.angularfire.collection('documents').add({
-          //   ID: this.ionicForm.value.id,
-          //   Name: this.afAuth.auth.currentUser.displayName,
-          //   image:urlfile,
-          //   Number: this.ionicForm.value.mobile,
-          // AltNumber: this.ionicForm.value.mobile2,
-          //   UserID: this.afAuth.auth.currentUser.uid,
-          //   TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
-        
-            
-          // });
-         
+
+            this.image = urlfile
           });
         })
       ).subscribe();
     }
-    // async documents(infor:infor)
     
 
-    submit(){ 
-      // this.authService.signup(this.register.value.email, this.register.value.password).then((value) =>{
-      //   localStorage.setItem('userid', this.afAuth.auth.currentUser.uid)
+    submit(){
       const userid = this.afAuth.auth.currentUser.uid;
   
         this.angularfire.collection('claims doc').add({
@@ -134,17 +126,19 @@ export class ListPage implements OnInit {
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
-          image:this.filePath
-          // image:urlfile,
+          image: this.image,
+          TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
+          
         }).then(() => {
           this.presentPopover();
+          ;
         }).catch(err =>{
           alert(err.message)
         })
         this.afAuth.auth.currentUser.updateProfile({
           displayName: this.ionicForm.value.name,
         })
-      // });
+
     }
   
     

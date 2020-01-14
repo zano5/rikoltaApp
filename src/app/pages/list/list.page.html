@@ -48,7 +48,7 @@
             <label>Alternative Number</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input maxlength="10" formControlName="mobile" type="text" placeholder="Claimant Alternative number"></ion-input>
+                <ion-input maxlength="10" formControlName="mobile2" type="text" placeholder="Claimant Alternative number"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
                 Mobile number is required.
@@ -76,7 +76,7 @@
             <label>Menu Selection</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input type="text" placeholder="Catering" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
+                <ion-input type="text" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
             </ion-item>
         </ion-list>
         <table *ngIf="hide" padding>
