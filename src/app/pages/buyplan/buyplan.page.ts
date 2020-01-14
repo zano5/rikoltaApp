@@ -6,6 +6,7 @@ import { Validators, FormGroup, FormControl, FormBuilder, FormArray } from '@ang
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { PopoverResultPage } from 'src/app/components/popover-result/popover-result.page';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-buyplan',
@@ -24,7 +25,7 @@ export class BuyplanPage implements OnInit {
   planMember = [];
   buyerAddress = {};
   constructor(public FormBuilder: FormBuilder,private router:Router,private activatedRoute:ActivatedRoute,
-    private popoverController:PopoverController,private angularfire: AngularFirestore ) {
+    private popoverController:PopoverController,private angularfire: AngularFirestore,    public afAuth: AngularFireAuth ) {
     this.form = 1;
    }
 
@@ -101,6 +102,7 @@ export class BuyplanPage implements OnInit {
     } 
   } 
   submit(){
+  
     this.buyerAddress = {
       addressline1:this.ionicForm.value.addressline1,
       addressline2:this.ionicForm.value.addressline2,
@@ -116,7 +118,9 @@ export class BuyplanPage implements OnInit {
       BuyerEmail:this.ionicForm.value.email,
       BuyerID:this.ionicForm.value.ID,
       BuyerAddress:this.buyerAddress,
-      BuyerMembers:this.membersForm.value.members
+      BuyerMembers:this.membersForm.value.members,
+      BuyerPolicy:this.pricePlan,
+      BuyerUserID:this.afAuth.auth.currentUser.uid
     });
     this.router.navigateByUrl('/menu/main')
     this.presentPopover();

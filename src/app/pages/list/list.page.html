@@ -15,7 +15,6 @@
             <form [formGroup]="ionicForm" class="form">
             <label>RSA ID</label>
             <ion-item lines="full">
-                <!-- <ion-icon color="medium" name="card"></ion-icon>&nbsp; -->
                 <ion-input maxlength="13" formControlName="id" type="text" required placeholder=" Policy holder RSA ID" form="id"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
