@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from 'src/app/service/auth.service';
+import { AuthService } from 'src/app/service/auth.service'; 
 
 @Component({
   selector: 'app-signin',
@@ -30,6 +30,7 @@ export class SigninPage implements OnInit {
     private router: Router, 
    private authService: AuthService,
     private alertCtrl: AlertController,
+
 
      ) { 
       this.loginForm = fb.group({

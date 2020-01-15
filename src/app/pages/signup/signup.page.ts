@@ -58,6 +58,7 @@ export class SignupPage implements OnInit {
       email: this.register.value.email,
       id: this.register.value.id,
       userid: this.afAuth.auth.currentUser.uid,
+      plan:""
      }).catch(error=>{
        alert(error.message)
      })
