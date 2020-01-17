@@ -9,8 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import * as firebase from 'firebase';
-import { AuthService } from 'src/app/service/auth.service';
-import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
+import { AuthService } from 'src/app/service/auth.service'; 
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -50,6 +50,8 @@ export class ListPage implements OnInit {
        public router:Router,
        private authService: AuthService,
        public FormBuilder: FormBuilder,
+       public loadingController: LoadingController,
+       
      ) { 
 
   }
@@ -85,6 +87,15 @@ export class ListPage implements OnInit {
     });
     return await popover.present();
   }
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({ 
+      duration: 9000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+  }
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -114,6 +125,9 @@ export class ListPage implements OnInit {
           });
         })
       ).subscribe();
+      if (this.downloadURL == undefined) {
+        this.presentLoadingWithOptions();
+      }
     }
     
 
@@ -131,6 +145,7 @@ export class ListPage implements OnInit {
           
         }).then(() => {
           this.presentPopover();
+          this.router.navigateByUrl('/menu/main')
           ;
         }).catch(err =>{
           alert(err.message)

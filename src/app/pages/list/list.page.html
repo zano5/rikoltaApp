@@ -8,17 +8,20 @@
     </ion-toolbar>
 </ion-header>
 <ion-content text-center>
-    <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <form [formGroup]="ionicForm" novalidate>
         <ion-list text-left style="margin: 0.5em;" padding>
             <label>RSA ID</label>
             <ion-item lines="full">
                 <ion-input maxlength="13" formControlName="id" type="text" required placeholder=" Policy holder RSA ID" form="id"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
-                ID number is required.
+            <span class="error ion-padding" *ngIf="ionicForm.get('id').hasError('required') && ionicForm.get('id').touched ">
+                Please enter your ID
               </span>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
-                Only numerical values allowed.
+            <span class="error ion-padding" *ngIf="ionicForm.get('id').hasError('minlength')">
+                ID must be 13 digits long
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('id').hasError('pattern')">
+                ID must be digits
               </span>
             <br>
             <label>Full Name</label>
@@ -26,22 +29,24 @@
                 <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
                 <ion-input formControlName="name" type="text" required placeholder="Claimant Full name"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
-                Name is required.
+            <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('pattern')">
+                Name must be only chars
               </span>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
-                Name should be min 2 chars long.
+            <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('required') && ionicForm.get('name').touched">
+                Please enter your name
               </span>
-            <br>
+            <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('minlength')">
+                Name should be atleast 2 chars long.
+            </span> <br>
             <label>Mobile Number</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
                 <ion-input maxlength="10" formControlName="mobile" type="text" required placeholder="Claimant Mobile Number"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
-                Mobile number is required.
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobile').hasError('required') && ionicForm.get('mobile').touched">
+                Please enter number
               </span>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobile').hasError('pattern')">
                 Only numerical values allowed.
               </span>
             <br>
@@ -50,10 +55,10 @@
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
                 <ion-input maxlength="10" formControlName="mobile2" type="text" placeholder="Claimant Alternative number"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
-                Mobile number is required.
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobile2').hasError('required') && ionicForm.get('mobile2').touched">
+                Please enter alternative number
               </span>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.pattern">
+            <span class="error ion-padding" *ngIf="ionicForm.get('mobile2').hasError('pattern')">
                 Only numerical values allowed.
               </span>
             <br>
@@ -73,13 +78,13 @@
                 </div>
             </ion-item>
             <br>
-            <label>Menu Selection</label>
-            <ion-item lines="full">
-                <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input type="text" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
-            </ion-item>
+            <!-- <label>Menu Selection</label>
+            <ion-item lines="full"> -->
+            <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
+            <!-- <ion-input type="text" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
+            </ion-item> -->
         </ion-list>
-        <table *ngIf="hide" padding>
+        <!-- <table *ngIf="hide" padding>
             <tr>
                 <th>Lunch</th>
                 <th>Refreshments</th>
@@ -88,10 +93,10 @@
                 <td>{{lunch | json}}</td>
                 <td>{{refreshments | json}}</td>
             </tr>
-        </table>
+        </table> -->
         <ion-row>
             <ion-col>
-                <ion-button type="submit" style="width: 50%" color="medium" (click)="submit()">Submit</ion-button>
+                <ion-button type="submit" style="width: 50%" [disabled]="!ionicForm.valid" color="dark" (click)="submit()">Submit</ion-button>
             </ion-col>
         </ion-row>
     </form>
