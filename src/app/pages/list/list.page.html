@@ -9,8 +9,8 @@
 </ion-header>
 <ion-content text-center>
    <ion-grid>
-    <ion-row >
-        <ion-col >
+    <ion-row padding >
+        <ion-col padding>
         <ion-list text-left style="margin: 0.5em;">
             <form [formGroup]="ionicForm" class="form">
             <label>RSA ID</label>
@@ -39,7 +39,7 @@
             <label>Mobile Number</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input maxlength="10" formControlName="mobile" type="text" required placeholder="Claimant Mobile Number"></ion-input>
+                <ion-input maxlength="10" formControlName="mobile" type="tel" required placeholder="Claimant Mobile Number"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
                 Mobile number is required.
@@ -51,7 +51,7 @@
             <label>Alternative Number</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input maxlength="10" formControlName="mobile2" type="text" placeholder="Claimant Alternative number"></ion-input>
+                <ion-input maxlength="10" formControlName="mobile2" type="tel" placeholder="Claimant Alternative number"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="isSubmitted && errorControl.mobile.errors?.required">
                 Mobile number is required.
@@ -81,7 +81,7 @@
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
                 <ion-input type="text" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
             </ion-item>
-        </ion-list>
+        <!-- </ion-list> -->
         <table *ngIf="hide" padding>
             <tr>
                 <th>Lunch</th>
@@ -98,7 +98,7 @@
             </ion-col>
         </ion-row>
     </form>
-</ion-content>
+<!-- </ion-content> -->
 <!-- 
 <ion-footer text-center style="border: none;">
     <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium" >Submit</ion-button>

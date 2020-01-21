@@ -127,7 +127,7 @@ export class BuyplanPage implements OnInit {
   }
   async presentPopover() {
     const popover = await this.popoverController.create({
-      component: PopoverResultPage, 
+      component: PopoverPurchasePage, 
       translucent: true
     });
     return await popover.present();
