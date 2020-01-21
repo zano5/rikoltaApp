@@ -34,7 +34,7 @@
             <label>Mobile Number</label>
             <ion-item>
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input type="tel" formControlName="mobilenumber" required placeholder="Mobile number"></ion-input>
+                <ion-input type="tel" maxlength="10" formControlName="mobilenumber" required placeholder="Mobile number"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('minlength')">
                 Number must be 10 chars long
@@ -56,7 +56,7 @@
             <label>RSA ID</label>
             <ion-item>
                 <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
-                <ion-input type="tel" formControlName="ID" required placeholder="RSA ID"></ion-input>
+                <ion-input type="tel" maxlength="13" formControlName="ID" required placeholder="RSA ID"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('required') && ionicForm.get('ID').touched ">
                 Please enter your ID
@@ -114,7 +114,7 @@
                   </span><br>
                 <label>RSA ID</label>
                 <ion-item>
-                    <ion-input type="text" formControlName="memberID" placeholder="RSA ID"></ion-input>
+                    <ion-input maxlength="13" type="text" formControlName="memberID" placeholder="RSA ID"></ion-input>
                 </ion-item>
                 <span class="error ion-padding" *ngIf="member.controls.memberID.hasError( 'minlength')">
                     *ID should be atleast 13 digits long

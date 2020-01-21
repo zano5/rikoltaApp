@@ -21,7 +21,9 @@ const routes: Routes = [
       { path: 'list', loadChildren: '../list/list.module#ListPageModule' },
       { path: 'apply', loadChildren: '../apply/apply.module#ApplyPageModule' },
       { path: 'contact', loadChildren: '../contact/contact.module#ContactPageModule' },
-      { path: 'help', loadChildren: '../help/help.module#HelpPageModule' },]
+      { path: 'help', loadChildren: '../help/help.module#HelpPageModule' },
+      { path: 'policy', loadChildren: '../policy/policy.module#PolicyPageModule' },
+    ]
   }
 ];
 
