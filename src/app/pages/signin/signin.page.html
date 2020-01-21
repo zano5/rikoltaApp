@@ -29,16 +29,16 @@
                                 </div>
                                 <ion-item>
                                     <ion-icon name="lock"></ion-icon>&nbsp;
-                                    <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+                                    <ion-input maxlength="18" type="password" formControlName="password" placeholder="Password"></ion-input>
                                 </ion-item>
                                 <div class="error" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
                                     Please input your password
                                 </div>
-                                <div class="error" *ngIf="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched">
+                                <div class="error" *ngIf="loginForm.get('password').hasError('minlength')">
                                     Minimum 6 characters
                                 </div>
-                                <div class="error" *ngIf="loginForm.get('password').hasError('maxlength') && loginForm.get('password').touched">
-                                    Maximum 12 characters
+                                <div class="error" *ngIf="loginForm.get('password').hasError('maxlength')">
+                                    Maximum 18 characters
                                 </div>
                                 <label class="error-message">{{errorMessage}}</label>
                                 .

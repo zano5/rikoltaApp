@@ -120,7 +120,8 @@ export class BuyplanPage implements OnInit {
       BuyerAddress:this.buyerAddress,
       BuyerMembers:this.membersForm.value.members,
       BuyerPolicy:this.pricePlan,
-      BuyerUserID:this.afAuth.auth.currentUser.uid
+      BuyerUserID:this.afAuth.auth.currentUser.uid,
+      BuyerIncome:this.ionicForm.value.income
     });
     this.router.navigateByUrl('/menu/main')
     this.presentPopover();

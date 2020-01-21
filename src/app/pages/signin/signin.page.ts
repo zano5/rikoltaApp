@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from 'src/app/service/auth.service';
+import { AuthService } from 'src/app/service/auth.service'; 
+import { ToastController } from '@ionic/angular'
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-signin',
@@ -25,16 +28,18 @@ export class SigninPage implements OnInit {
   public forgotpasswordForm: FormGroup;
   isForgotPassword: boolean = true;
   userDetails: any;
-
+  users = [];
   constructor(private fb: FormBuilder,
     private router: Router, 
    private authService: AuthService,
     private alertCtrl: AlertController,
-
+    public toastController: ToastController,
+    private db:AngularFirestore,
+    private angularFireAuth:AngularFireAuth
      ) { 
       this.loginForm = fb.group({
         email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
-        password: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(12), Validators.required])],
+        password: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(18), Validators.required])],
       });
   
       this.forgotpasswordForm = fb.group({
@@ -44,13 +49,20 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
   }
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
 
   loginUser(){
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).then(() =>{
-      this.router.navigateByUrl('/menu/main')
-      
+      this.router.navigateByUrl('/menu/main') 
+      this.presentToast('Successfully signed in');
     }).catch(err=>{
-      alert(err.message)
+     this.presentToast(err.message);
     })
   }
 

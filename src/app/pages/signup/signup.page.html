@@ -33,9 +33,14 @@
                                 <ion-item>
 
                                     <ion-icon name="card"></ion-icon>&nbsp;
-                                    <ion-input  maxlength="13" type="text" formControlName="id" placeholder="ID"></ion-input>
+                                    <ion-input maxlength="13" type="text" formControlName="id" placeholder="ID"></ion-input>
                                 </ion-item>
-
+                                <div class="error  " *ngIf="register.get('id').hasError('required') && register.get('id').touched ">
+                                    Please enter your ID
+                                </div>
+                                <div class="error  " *ngIf="register.get('id').hasError('minlength')">
+                                    ID must be 13 digits long
+                                </div>
                                 <ion-item>
 
                                     <ion-icon name="mail"></ion-icon>&nbsp;
@@ -50,17 +55,17 @@
                                 <ion-item>
 
                                     <ion-icon name="lock"></ion-icon>&nbsp;
-                                    <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+                                    <ion-input type="password" maxlength="18" formControlName="password" placeholder="Password"></ion-input>
                                 </ion-item>
                                 <div class="error" *ngIf="register.get('password').hasError('required') && register.get('password').touched">
                                     Please input your password
                                 </div>
-                                <div class="error" *ngIf="register.get('password').hasError('minlength') && register.get('password').touched">
+                                <div class="error" *ngIf="register.get('password').hasError('minlength')">
                                     Minimum 6 characters
 
                                 </div>
-                                <div class="error" *ngIf="register.get('password').hasError('maxlength') && register.get('password').touched">
-                                    Maximum 12 characters
+                                <div class="error" *ngIf="register.get('password').hasError('maxlength')">
+                                    Maximum 18 characters
                                 </div>
                             </div>
                         </div>

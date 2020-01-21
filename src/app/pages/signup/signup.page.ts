@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
@@ -20,6 +21,7 @@ export class SignupPage implements OnInit {
     private authService: AuthService,
      private afAuth: AngularFireAuth,
     private router: Router,
+    public toastController: ToastController
     ) { 
     this.register =  fb.group({
       email: new FormControl('', Validators.compose([
@@ -28,6 +30,7 @@ export class SignupPage implements OnInit {
       ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
+        Validators.maxLength(18),
         Validators.required
       ])),
       name: new FormControl('', Validators.compose([
@@ -38,7 +41,7 @@ export class SignupPage implements OnInit {
       //   Validators.required
       // ])),
       id: new FormControl('', Validators.compose([
-        Validators.maxLength(13),
+        Validators.minLength(13),
         Validators.required
       ])),
     })
@@ -46,7 +49,13 @@ export class SignupPage implements OnInit {
 
   ngOnInit() {
   }
-
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
   registerUser(){
     this.authService.signup(this.register.value.email, this.register.value.password).then((value) =>{
       localStorage.setItem('userid', this.afAuth.auth.currentUser.uid)
@@ -58,6 +67,7 @@ export class SignupPage implements OnInit {
       email: this.register.value.email,
       id: this.register.value.id,
       userid: this.afAuth.auth.currentUser.uid,
+      plan:""
      }).catch(error=>{
        alert(error.message)
      })
@@ -68,12 +78,13 @@ export class SignupPage implements OnInit {
  
       }).then(()=> {
         this.router.navigateByUrl('signin');
+        this.presentToast('Successfully signed up');
  
       }).catch(err=>{
- alert(err.message)   
+        this.presentToast(err.message);
    })
     }).catch(err=>{
-      alert(err.message)
+      this.presentToast(err.message);
     })
   }
 
