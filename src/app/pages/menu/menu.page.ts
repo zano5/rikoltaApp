@@ -13,33 +13,6 @@ export class MenuPage implements OnInit {
 
   pages = [];
   users = [];
-  // pages = [
-  //   {
-  //     title: 'Home',
-  //     url: '/menu/main',
-  //     icon: 'home'
-  //   },
-  //   {
-  //     title: 'Claims',
-  //     url: '/menu/list',
-  //     icon: 'bookmarks',
-  //   },
-  //   {
-  //     title: 'Apply',
-  //     url: '/menu/apply',
-  //     icon: 'cart',
-  //   },
-  //   {
-  //     title: 'Contact us',
-  //     url: '/menu/contact',
-  //     icon: 'call',
-  //   },
-  //   {
-  //     title: 'Help',
-  //     url: '/menu/help',
-  //     icon: 'help',
-  //   }, 
-  // ];
   constructor(private navCtrl: NavController, public afAuth: AngularFireAuth,private pagesService:PagesService,private db:AngularFirestore,) {  
     this.pages = pagesService.getPages();
   }

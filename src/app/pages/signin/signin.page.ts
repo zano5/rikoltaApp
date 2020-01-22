@@ -61,9 +61,11 @@ export class SigninPage implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).then(() =>{
       this.router.navigateByUrl('/menu/main') 
       this.presentToast('Successfully signed in');
+      this.loginForm.reset();
     }).catch(err=>{
      this.presentToast(err.message);
     })
+    
   }
 
   forgotpassword() {
