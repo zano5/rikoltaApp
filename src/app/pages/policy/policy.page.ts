@@ -9,11 +9,19 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class PolicyPage implements OnInit {
   users = [];
+  policy;
+  policyPrice;
+  policyMembers;
 
   constructor(private db:AngularFirestore,
-    private angularFireAuth:AngularFireAuth,) { }
+    private angularFireAuth:AngularFireAuth,) { 
+
+    }
 
   ngOnInit() {
+
+  }
+  ionViewWillEnter(){
     var user = this.angularFireAuth.auth.currentUser;  
     this.db.collection('users').snapshotChanges().subscribe(data => {
       this.users = data.map(e => {
@@ -24,9 +32,16 @@ export class PolicyPage implements OnInit {
       }); 
       this.users.forEach(element => {
         if(user.uid == element.key){
-          console.log(element);
+          this.policy = element.data.plan;
+          this.policyMembers = element.data.members;
         }
       });
+      if (this.policy == "Standard Plan") {
+        this.policyPrice = 150;
+      }else if (this.policy == "Premium Plan") {
+        this.policyPrice = 200;
+      }
+      console.log(this.policy +' - '+this.policyPrice);
     })
   }
 
