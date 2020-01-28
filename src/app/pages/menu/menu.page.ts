@@ -14,26 +14,11 @@ export class MenuPage implements OnInit {
   pages = [];
   users = [];
   constructor(private navCtrl: NavController, public afAuth: AngularFireAuth,private pagesService:PagesService,private db:AngularFirestore,) {  
-    this.pages = pagesService.getPages();
+    this.pages = this.pagesService.getPages();
   }
 
   ngOnInit() {
-    var user = this.afAuth.auth.currentUser;  
-    console.log(user.uid);  
-    this.db.collection('users').snapshotChanges().subscribe(data => {
-      this.users = data.map(e => {
-        return{
-          key: e.payload.doc.id,
-          ...e.payload.doc.data()
-        } 
-      });
-      this.users.forEach(element => {
-        if (user.uid == element.key && element.plan != "") {
-          this.pages.push({title:'Policy',url:'/menu/policy',icon:'book'})
-        }
-      });
-      
-    })
+
 
   }
 

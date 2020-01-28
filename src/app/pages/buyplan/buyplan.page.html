@@ -125,10 +125,11 @@
                 <span class="error ion-padding" *ngIf="member.controls.memberID.hasError( 'required')">
                     *ID is required
                   </span><br>
-                <ion-button type="button" style="width: 48%;" color="light" (click)="addNewInputField(member)">Add Member</ion-button>
+
                 <ion-button type="button" style="width: 48%;" color="danger" *ngIf="membersForm.controls.members.length > 1" (click)="RemoveInputField(i)">Remove Member</ion-button>
             </ion-list>
         </ion-list>
+        <ion-button type="button" style="width: 48%;" color="light" (click)="addNewInputField(member)">Add Member</ion-button>
         <ion-button style="width: 50%;" [disabled]="!membersForm.valid" color="dark" (click)="submit()">Submit</ion-button>
     </form>
     <!-- <ion-list text-left style="margin: 0.5em;" *ngIf="form == 2" padding>
