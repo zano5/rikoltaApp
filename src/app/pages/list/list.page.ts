@@ -60,7 +60,7 @@ export class ListPage implements OnInit {
     this.ionicForm = this.FormBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]], 
       mobile: ['', [Validators.required,Validators.minLength(10), Validators.pattern('^[0-9]+$')]],
-      mobile2: ['', [Validators.required,Validators.minLength(10), Validators.pattern('^[0-9]+$')]],
+      // mobile2: ['', [Validators.required,Validators.minLength(10), Validators.pattern('^[0-9]+$')]],  
       id: ['', [Validators.required,Validators.minLength(13), Validators.pattern('^[0-9]+$')]],
     })
   }  
