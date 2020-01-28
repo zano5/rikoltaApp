@@ -1,10 +1,17 @@
 <ion-content>
     <ion-list>
-        <ion-item>
-            <img style="width: 50%;margin: 0 0 0 25%;" src="../../../assets/images/successful.png" alt="">
+        <ion-item text-center>
+            <img style="border-radius: 5px;" src="../../../assets/images/dribbble-success-2.gif" alt="">
         </ion-item>
         <ion-item text-center>
-            <a style="color: #58D68D;"> <b>You've successful made a claim our consultant will be in touch </b> </a>
+            <a style="color: #2196F3;text-align: center;"> <b>You've successful made a claim our consultant will be in touch</b> </a> <br>
         </ion-item>
+
+        <ion-item text-center>
+            <ion-button style="width: 100%;" color="danger" expnad="full" (click)="closePopover()">
+                <ion-icon name="close" slot="start"></ion-icon>
+                Close</ion-button>
+        </ion-item>
+
     </ion-list>
 </ion-content>

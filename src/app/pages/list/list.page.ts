@@ -135,8 +135,9 @@ export class ListPage implements OnInit {
       const userid = this.afAuth.auth.currentUser.uid;
   
         this.angularfire.collection('claims doc').add({
-          ID: this.ionicForm.value.id,
-          ClaimentName: this.ionicForm.value.name,
+          ClaimNumber:Math.floor(100000 + Math.random() * 900000),
+         ID: this.ionicForm.value.id,
+         ClaimentName: this.ionicForm.value.name,
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
