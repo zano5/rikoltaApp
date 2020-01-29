@@ -139,7 +139,7 @@ export class ListPage implements OnInit {
          ID: this.ionicForm.value.id,
          ClaimentName: this.ionicForm.value.name,
           Number: this.ionicForm.value.mobile,
-          AltNumber: this.ionicForm.value.mobile2,
+          // AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,
           image: this.image,
           TimeStamp:firebase.firestore.FieldValue.serverTimestamp(),
