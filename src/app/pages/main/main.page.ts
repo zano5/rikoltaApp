@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { AngularFireAuth } from '@angular/fire/auth'; 
 import * as firebase from 'firebase';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/service/auth.service';
+import { PagesService, User } from 'src/app/service/pages.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -9,14 +13,32 @@ import * as firebase from 'firebase';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-
-  constructor(private route:Router) {
-
+  users = [];
+  pages = []; 
+  private data:Observable<User[]>; 
+  
+  constructor(private route:Router,private db:AngularFirestore,private authService: AuthService,private pagesService:PagesService,private afa:AngularFireAuth) {
+    this.pages = this.pagesService.getPages();
    }
 
   ngOnInit() {
-    var user = firebase.auth().currentUser;
-    console.log(user);
+    // console.log('Landing page....');
+    // this.data = this.pagesService.getUsers();
+    // console.log(this.data); 
+    // var userid = this.authService.getUID();  
+    // console.log(userid);
+    // this.data.subscribe(value => {
+    //   value.forEach(element => {
+    //     console.log(element.ID);
+    //      if (userid == element.ID && element.plan != "none" && this.pages.length == 5) {
+    //       console.log('add it'+element.plan+' '+userid);
+    //       this.pages.push({title:'Policy',url:'/menu/policy',icon:'book'}) 
+    //     }
+    //   })
+    // });
+  } 
+  ionViewWillEnter(){
+
   }
 
   // ---------------------------------------------------

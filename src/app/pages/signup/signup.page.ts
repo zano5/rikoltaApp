@@ -55,13 +55,14 @@ export class SignupPage implements OnInit {
       duration: 2000
     });
     toast.present();
-  }
+  } 
   registerUser(){
+    this.authService.logout();
     this.authService.signup(this.register.value.email, this.register.value.password).then((value) =>{
-      localStorage.setItem('userid', this.afAuth.auth.currentUser.uid)
- 
-      
+     // localStorage.setItem('userid', this.afAuth.auth.currentUser.uid)
      //  ---------------
+     console.log(value.user.uid);
+     console.log(this.afAuth.auth.currentUser.uid);
      this.angularfire.collection('users').doc(this.afAuth.auth.currentUser.uid).set({
       displayName: this.register.value.name,
       email: this.register.value.email,
