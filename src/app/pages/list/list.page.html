@@ -41,7 +41,7 @@
             <label>Mobile Number</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input maxlength="10" formControlName="mobile" type="text" required placeholder="Claimant Mobile Number"></ion-input>
+                <ion-input maxlength="10" formControlName="mobile" type="tel" required placeholder="Claimant Mobile Number"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobile').hasError('required') && ionicForm.get('mobile').touched">
                 Please enter number
@@ -53,27 +53,27 @@
             <label>Alternative Number</label>
             <ion-item lines="full">
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input maxlength="10" formControlName="mobile2" type="text" placeholder="Claimant Alternative number"></ion-input>
+                <ion-input maxlength="10"  type="tel" placeholder="Claimant Alternative number"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="ionicForm.get('mobile2').hasError('required') && ionicForm.get('mobile2').touched">
+            <!-- <span class="error ion-padding" *ngIf="ionicForm.get('mobile2').hasError('required') && ionicForm.get('mobile2').touched">
                 Please enter alternative number
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobile2').hasError('pattern')">
                 Only numerical values allowed.
-              </span>
+              </span> -->
             <br>
             <!-- <ion-item>
             <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
             <ion-input type="file" required></ion-input>
-        </ion-item> -->
+        </ion-item>  -->
             <label>Death Certificate</label>
             <ion-item>
                 <div class="image-upload" float-right>
-                    <label for="file-input">
-                                <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp; -->
-                            <!-- <ion-icon class="input" name="attach"> </ion-icon> -->
+                    <label for="file-input"> 
+                                <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
+                            <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
                         
-                        <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+                    <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
                       </label>
                 </div>
             </ion-item>
@@ -100,7 +100,7 @@
             </ion-col>
         </ion-row>
     </form>
-</ion-content>
+<!-- </ion-content> -->
 <!-- 
 <ion-footer text-center style="border: none;">
     <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium" >Submit</ion-button>

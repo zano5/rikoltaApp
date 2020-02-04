@@ -30,6 +30,15 @@
                                 <div class="error" *ngIf="register.get('name').hasError('maxlength') && register.get('name').touched">
                                     Maximum 30 characters
                                 </div>
+
+                                <ion-item>
+
+                                    <ion-icon name="man"></ion-icon>&nbsp;
+                                    <ion-input type="text" formControlName="name" required placeholder="Gender"></ion-input>
+                                </ion-item>
+                                <!-- <div class="error" *ngIf="register.get('name').hasError('required') && register.get('name').touched">
+                                    Please input your gander
+                                </div> -->
                                 <ion-item>
 
                                     <ion-icon name="card"></ion-icon>&nbsp;

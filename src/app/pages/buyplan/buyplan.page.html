@@ -53,7 +53,7 @@
             <span class="error ion-padding" *ngIf="ionicForm.get('email').hasError('pattern')">
                 Email address not valid
               </span><br>
-            <label>RSA ID</label>
+            <label>RSA ID</label> 
             <ion-item>
                 <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
                 <ion-input type="tel" maxlength="13" formControlName="ID" required placeholder="RSA ID"></ion-input>
@@ -96,22 +96,17 @@
         <ion-button style="width: 50%;" [disabled]="!ionicForm.valid" color="dark" (click)="Next()">Next</ion-button>
 
     </form>
-    <form [formGroup]="membersForm" *ngIf="form == 2">
+  
         <ion-list text-left formArrayName="members" *ngIf="form == 2" padding>
             <ion-list [formGroupName]="i" *ngFor="let member of membersForm.controls.members.controls; let i = index">
+
+                    <form [formGroup]="membersForm" *ngIf="form == 2">
+
                 <label>Full name</label>
                 <ion-item>
                     <ion-input type="text" required formControlName="memberName" placeholder="Full name"></ion-input>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="member.controls.memberName.hasError( 'minlength')">
-                    Name should be atleast 2 chars long
-                  </span>
-                <span class="error ion-padding" *ngIf="member.controls.memberName.hasError( 'pattern')">
-                    Name must be only chars
-                  </span>
-                <span class="error ion-padding" *ngIf="member.controls.memberName.hasError( 'required')">
-                    *Name is required
-                  </span><br>
+                
                 <label>RSA ID</label>
                 <ion-item>
                     <ion-input maxlength="13" type="text" formControlName="memberID" placeholder="RSA ID"></ion-input>
@@ -132,18 +127,10 @@
         <ion-button type="button" style="width: 48%;" color="light" (click)="addNewInputField(member)">Add Member</ion-button>
         <ion-button style="width: 50%;" [disabled]="!membersForm.valid" color="dark" (click)="submit()">Submit</ion-button>
     </form>
-    <!-- <ion-list text-left style="margin: 0.5em;" *ngIf="form == 2" padding>
-        <ion-list *ngFor="let member of planMember;let i=index">
-            <label>{{member}}</label>
-            <ion-item> -->
-    <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
-    <!-- <ion-input type="text" [(ngModel)]="fullname[i]" name="fullname[{{i}}]" placeholder="Full name"></ion-input>
-            </ion-item>
-            <ion-item> -->
-    <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
-    <!-- <ion-input type="number" [(ngModel)]="ID[i]" name="ID[{{i}}]" placeholder="RSA ID"></ion-input>
-            </ion-item>
+            
+            </ion-list>
         </ion-list>
-    </ion-list> -->
+        <ion-button type="submit" style="width: 50%;" color="dark" (click)="submit()">Submit</ion-button>
+
 
 </ion-content>

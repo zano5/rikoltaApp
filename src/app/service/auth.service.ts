@@ -75,6 +75,7 @@ export class AuthService {
         err => reject(err))
     })
    }
+   
    userDetails(){
     return firebase.auth().currentUser;
   }
