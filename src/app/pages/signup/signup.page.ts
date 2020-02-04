@@ -64,6 +64,7 @@ export class SignupPage implements OnInit {
      //  ---------------
      this.angularfire.collection('users').doc(this.afAuth.auth.currentUser.uid).set({
       displayName: this.register.value.name,
+      gender:this.register.value.name,
       email: this.register.value.email,
       id: this.register.value.id,
       userid: this.afAuth.auth.currentUser.uid,
