@@ -10,6 +10,13 @@ import { PagesService, User } from 'src/app/service/pages.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+export interface UserData{
+  plan:string;
+  displayName: string;
+  userid: string;
+  email: string;
+  members: string;
+}
 
 @Component({
   selector: 'app-signin',
@@ -78,7 +85,7 @@ export class SigninPage implements OnInit {
       var userId = user.user.uid;
       console.log(userId);  
 
-      this.db.doc('users/'+userId).valueChanges().subscribe(userDoc =>{ 
+      this.db.doc<UserData>('users/'+userId).valueChanges().subscribe(userDoc =>{ 
         if(userDoc.plan != 'none' && this.pages.length == 5){
           this.pages.push({title:'Policy',url:'/menu/policy',icon:'book'}) 
         }
