@@ -2,13 +2,11 @@
     <ion-toolbar color="dark">
         <ion-buttons style="color:white" slot="start">
             <ion-back-button>
-
             </ion-back-button>
         </ion-buttons>
         <ion-title>Purchase</ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content text-center>
     <ion-list padding>
         <ion-item-divider style="border: none;">
@@ -23,47 +21,47 @@
                 <ion-input type="text" formControlName="Fullname" required placeholder="Full name"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('pattern')">
-                Name must be only chars
-              </span>
+              Name must be only chars
+            </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('required') && ionicForm.get('Fullname').touched">
-                Please enter your name
-              </span>
+              Please enter your name
+            </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('Fullname').hasError('minlength')">
-                Name should be atleast 2 chars long.
-              </span><br>
+              Name should be atleast 2 chars long.
+            </span><br>
             <label>Mobile Number</label>
             <ion-item>
                 <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
                 <ion-input type="tel" maxlength="10" formControlName="mobilenumber" required placeholder="Mobile number"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('minlength')">
-                Number must be 10 chars long
-              </span>
+              Number must be 10 chars long
+            </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('required') && ionicForm.get('mobilenumber').touched">
-                Number is required
-              </span>
+              Number is required
+            </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobilenumber').hasError('pattern')">
-                Number must be digits
-              </span><br>
+              Number must be digits
+            </span><br>
             <label>Email</label>
             <ion-item>
                 <!-- <ion-icon name="mail"></ion-icon>&nbsp; -->
                 <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('email').hasError('pattern')">
-                Email address not valid
-              </span><br>
-            <label>RSA ID</label> 
+              Email address not valid
+            </span><br>
+            <label>RSA ID</label>
             <ion-item>
                 <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
                 <ion-input type="tel" maxlength="13" formControlName="ID" required placeholder="RSA ID"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('required') && ionicForm.get('ID').touched ">
-                Please enter your ID
-              </span>
+              Please enter your ID
+            </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('minlength')">
-                ID must be 13 digits long
-              </span><br>
+              ID must be 13 digits long
+            </span><br>
             <label>Address</label>
             <ion-item>
                 <ion-label style="font-size: 18pt;color:grey" position="stacked">
@@ -82,44 +80,46 @@
                 <ion-input type="tel" formControlName="income" required placeholder="Monthly Income"></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('minlength')">
-                Income must be atleast 3 chars long
-              </span>
+              Income must be atleast 3 chars long
+            </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('required') && ionicForm.get('income').touched">
-                Please enter your income
-              </span>
+              Please enter your income
+            </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('pattern')">
-                Income must be digits
-              </span><br>
-
-
+              Income must be digits
+            </span><br>
         </ion-list>
         <ion-button style="width: 50%;" [disabled]="!ionicForm.valid" color="dark" (click)="Next()">Next</ion-button>
-
     </form>
-  
+    <form [formGroup]="membersForm" *ngIf="form == 2">
         <ion-list text-left formArrayName="members" *ngIf="form == 2" padding>
             <ion-list [formGroupName]="i" *ngFor="let member of membersForm.controls.members.controls; let i = index">
-
-                    <form [formGroup]="membersForm" *ngIf="form == 2">
-
                 <label>Full name</label>
                 <ion-item>
                     <ion-input type="text" required formControlName="memberName" placeholder="Full name"></ion-input>
                 </ion-item>
-                
+                <span class="error ion-padding" *ngIf="member.controls.memberName.hasError( 'minlength')">
+                  Name should be atleast 2 chars long
+                </span>
+                <span class="error ion-padding" *ngIf="member.controls.memberName.hasError( 'pattern')">
+                  Name must be only chars
+                </span>
+                <span class="error ion-padding" *ngIf="member.controls.memberName.hasError( 'required')">
+                  *Name is required
+                </span><br>
                 <label>RSA ID</label>
                 <ion-item>
                     <ion-input maxlength="13" type="text" formControlName="memberID" placeholder="RSA ID"></ion-input>
                 </ion-item>
                 <span class="error ion-padding" *ngIf="member.controls.memberID.hasError( 'minlength')">
-                    *ID should be atleast 13 digits long
-                  </span>
+                  *ID should be atleast 13 digits long
+                </span>
                 <span class="error ion-padding" *ngIf="member.controls.memberID.hasError( 'pattern')">
-                    *ID must be only digits
-                  </span>
+                  *ID must be only digits
+                </span>
                 <span class="error ion-padding" *ngIf="member.controls.memberID.hasError( 'required')">
-                    *ID is required
-                  </span><br>
+                  *ID is required
+                </span><br>
 
                 <ion-button type="button" style="width: 48%;" color="danger" *ngIf="membersForm.controls.members.length > 1" (click)="RemoveInputField(i)">Remove Member</ion-button>
             </ion-list>
@@ -127,10 +127,4 @@
         <ion-button type="button" style="width: 48%;" color="light" (click)="addNewInputField(member)">Add Member</ion-button>
         <ion-button style="width: 50%;" [disabled]="!membersForm.valid" color="dark" (click)="submit()">Submit</ion-button>
     </form>
-            
-            </ion-list>
-        </ion-list>
-        <ion-button type="submit" style="width: 50%;" color="dark" (click)="submit()">Submit</ion-button>
-
-
 </ion-content>
