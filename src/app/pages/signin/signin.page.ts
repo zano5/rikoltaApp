@@ -4,9 +4,12 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/service/auth.service'; 
 import { ToastController } from '@ionic/angular'
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { PagesService } from 'src/app/service/pages.service';
+import { PagesService, User } from 'src/app/service/pages.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-signin',
@@ -14,6 +17,7 @@ import { PagesService } from 'src/app/service/pages.service';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
+  userid:string;
   loading: HTMLIonLoadingElement;
   facebook: any;
   // facebook: any;
@@ -30,10 +34,12 @@ export class SigninPage implements OnInit {
   isForgotPassword: boolean = true;
   userDetails: any;
   pages = [];
-  users = [];
+  
+  users:any = []; 
+  user;
   constructor(private fb: FormBuilder,
     private router: Router, 
-   private authService: AuthService,
+    private authService: AuthService,
     private alertCtrl: AlertController,
     public toastController: ToastController,
     private db:AngularFirestore,
@@ -51,7 +57,7 @@ export class SigninPage implements OnInit {
       })
      }
 
-  ngOnInit() {
+  ngOnInit() { 
 
   }
   async presentToast(msg) {
@@ -62,32 +68,43 @@ export class SigninPage implements OnInit {
     toast.present();
   }
 
-  loginUser(){
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).then(() =>{
+  SingIn(){  
+
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).then((user) =>{
       this.router.navigateByUrl('/menu/main') 
       this.presentToast('Successfully signed in');
-      this.loginForm.reset(); 
-      var user = this.angularFireAuth.auth.currentUser;  
-      console.log(user.uid);  
-      this.db.collection('users').snapshotChanges().subscribe(data => {
-        this.users = data.map(e => {
-          return{
-            key: e.payload.doc.id,
-            ...e.payload.doc.data()
-          } 
-        });
-        this.users.forEach(element => {
-          console.log(element);
-          if (user.uid == element.key && element.plan != "none" && this.pages.length >= 5 && this.pages.length <= 5) {
-            this.pages.push({title:'Policy',url:'/menu/policy',icon:'book'})
-          }
-        });
-        
+      this.loginForm.reset();   
+      // var userid = this.authService.getUID();  
+      var userId = user.user.uid;
+      console.log(userId);  
+
+      this.db.doc('users/'+userId).valueChanges().subscribe(userDoc =>{ 
+        if(userDoc.plan != 'none' && this.pages.length == 5){
+          this.pages.push({title:'Policy',url:'/menu/policy',icon:'book'}) 
+        }
       })
-    }).catch(err=>{
-     this.presentToast(err.message);
+      // this.db.collection('users').snapshotChanges().subscribe(data => { 
+
+        // console.log(data)
+        // this.user = data.map(e => { 
+        //   return{
+        //     key: e.payload.doc.id,
+        //     ...e.payload.doc.data()
+            
+        //   } 
+        // }); 
+    //     this.user.forEach(element => {
+    //       if (userid == element.key && element.plan != "none" && this.pages.length >= 5 && this.pages.length <= 5) { 
+    //         console.log('add it'+element.plan+' '+userid);
+    //         this.pages.push({title:'Policy',url:'/menu/policy',icon:'book'}) 
+    //       }
+    //     }); 
+    //   })   
+      
+    // }).catch(err=>{
+    //  this.presentToast(err.message);
     })
-    
+
   }
 
   forgotpassword() {
