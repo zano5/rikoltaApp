@@ -44,6 +44,10 @@ export class SignupPage implements OnInit {
         Validators.minLength(13),
         Validators.required
       ])),
+      gender: new FormControl('', Validators.compose([
+        Validators.minLength(3),
+        Validators.required
+      ])),
     })
   }
 
@@ -65,7 +69,7 @@ export class SignupPage implements OnInit {
      console.log(this.afAuth.auth.currentUser.uid);
      this.angularfire.collection('users').doc(this.afAuth.auth.currentUser.uid).set({
       displayName: this.register.value.name,
-      gender:this.register.value.name,
+      gender:this.register.value.gender,
       email: this.register.value.email,
       id: this.register.value.id,
       userid: this.afAuth.auth.currentUser.uid,
