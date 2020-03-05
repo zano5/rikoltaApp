@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { auth } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class AuthService {
   // }
   constructor(private afs: AngularFirestore, 
     private router: Router,
-     public afAuth: AngularFireAuth,
-    //  public angularFireAuth:AngularFireAuth,
+    //  public afAuth: AngularFireAuth,
+     public angularFireAuth:AngularFireAuth,
       private alertCtrl : AlertController ) {  
 
     // afAuth.auth.onAuthStateChanged((user)=>{
@@ -51,12 +52,12 @@ export class AuthService {
   //    console.log(error)
   //   })
   // }
-  async login(email: string, password: string) {
-    return await this.afAuth.auth.signInWithEmailAndPassword(email, password); 
-  }
+  // async login(email: string, password: string) {
+  //   return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password); 
+  // }
  
   async signup(email: string, password: string) {
-    return await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return await this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
   }
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   loginUser(value){
@@ -80,26 +81,58 @@ export class AuthService {
     return firebase.auth().currentUser;
   }
    
+  // isUserLoggedIn() {
+  //   return JSON.parse(localStorage.getItem('user'));
+  // }
+  //  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  getUID(): string {
+    return this.angularFireAuth.auth.currentUser.uid;
+  }
+
+
+  // async sendPasswordResetEmail(passwordResetEmail: string) {
+  //   return await this.angularFireAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+  // }
+ 
+  // async logout(){
+  //   await this.angularFireAuth.auth.signOut().then((success)=>{
+  //     console.log(success);
+  //     console.log("success");
+  //     this.router.navigateByUrl("signin");
+  //   }).catch((error)=>{
+  //     console.log(error)
+  //   })
+  // }
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+  async login(email: string, password: string) {
+    return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+ 
+  async register(email: string, password: string) {
+    return await this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
+  }
+ 
+  async sendEmailVerification() {
+    return await this.angularFireAuth.auth.currentUser.sendEmailVerification();
+  }
+ 
+  async sendPasswordResetEmail(passwordResetEmail: string) {
+    return await this.angularFireAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+  }
+ 
+  async logout() {
+    return await this.angularFireAuth.auth.signOut();
+  }
+ 
+ 
   isUserLoggedIn() {
     return JSON.parse(localStorage.getItem('user'));
   }
-  //  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  getUID(): string {
-    return this.afAuth.auth.currentUser.uid;
-  }
-
-
-  async sendPasswordResetEmail(passwordResetEmail: string) {
-    return await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+ 
+  async  loginWithGoogle() {
+    return await this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
   }
  
-  async logout(){
-    await this.afAuth.auth.signOut().then((success)=>{
-      console.log(success);
-      console.log("success");
-      this.router.navigateByUrl("signin");
-    }).catch((error)=>{
-      console.log(error)
-    })
-  }
+ 
 }

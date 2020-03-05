@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ReactiveFormsModule } from '@angular/forms' 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms' 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
@@ -54,7 +54,8 @@ const firebaseConfig = {
     Popover1HelpPageModule,
     Popover2HelpPageModule,
     Popover3HelpPageModule,
-    Popover4HelpPageModule
+    Popover4HelpPageModule,
+    FormsModule
   ],
   providers: [
     StatusBar,

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PopoverController } from '@ionic/angular'; 
+import { PopoverController, LoadingController } from '@ionic/angular'; 
 import { PopoverPurchasePage } from 'src/app/components/popover-purchase/popover-purchase.page';
 import { Validators, FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { PopoverResultPage } from 'src/app/components/popover-result/popover-result.page';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-buyplan',
@@ -14,6 +16,24 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./buyplan.page.scss'],
 })
 export class BuyplanPage implements OnInit {
+ 
+  
+  value:any;
+  defaultDate = "1987-06-30";
+  public loginForm: FormGroup;
+  name: any;
+  username: any;
+  public lunch: string;
+  public refreshments: string;
+  hide: boolean = false;
+  chatRef: any;
+  key: string;
+  ref: any;
+  downloadURL: any;
+  id: string;
+  uploadState: any;
+  list: any;
+  image: any;
   ionicForm: FormGroup;
   membersForm:FormGroup;
   isSubmitted = false;
@@ -24,8 +44,16 @@ export class BuyplanPage implements OnInit {
   form:number;
   planMember = [];
   buyerAddress = {};
-  constructor(public FormBuilder: FormBuilder,private router:Router,private activatedRoute:ActivatedRoute,
-    private popoverController:PopoverController,private angularfire: AngularFirestore,    public afAuth: AngularFireAuth ) {
+  constructor(public FormBuilder: FormBuilder,private router:Router,
+    private activatedRoute:ActivatedRoute,
+    private popoverController:PopoverController,
+    private angularfire: AngularFirestore, 
+    public afAuth: AngularFireAuth,
+    public loadingController: LoadingController,
+     public Storage: AngularFireStorage,
+
+
+        ) {
     this.form = 1;
    }
 
@@ -121,11 +149,21 @@ export class BuyplanPage implements OnInit {
       BuyerMembers:this.membersForm.value.members,
       BuyerPolicy:this.pricePlan,
       BuyerUserID:this.afAuth.auth.currentUser.uid,
-      BuyerIncome:this.ionicForm.value.income
-    });
-    this.router.navigateByUrl('/menu/main')
+      BuyerIncome:this.ionicForm.value.income,
+      image: this.image,
+
+    }).then(() => {
     this.presentPopover();
+    this.router.navigateByUrl('/menu/main');
+   
+  }).catch(err =>{
+      alert(err.message)
+    })
+    this.afAuth.auth.currentUser.updateProfile({
+      displayName: this.ionicForm.value.name,
+    })
   }
+
   async presentPopover() {
     const popover = await this.popoverController.create({
       component: PopoverPurchasePage, 
@@ -133,4 +171,33 @@ export class BuyplanPage implements OnInit {
     });
     return await popover.present();
   } 
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({ 
+      duration: 9000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+  }
+  upload(event) {
+    const file = event.target.files[0];
+    this.id = Math.random().toString(36).substring(2);
+    const filepath = this.id;
+    this.ref = this.Storage.ref(filepath);
+    const task = this.Storage.upload(filepath, file);
+    this.uploadState = task.percentageChanges();
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        this.downloadURL = this.ref.getDownloadURL().subscribe(urlfile=>{
+           console.log(urlfile);
+
+            this.image = urlfile
+          });
+        })
+      ).subscribe();
+      if (this.downloadURL == undefined) {
+        this.presentLoadingWithOptions();
+      }
+    }
 }

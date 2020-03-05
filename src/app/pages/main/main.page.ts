@@ -45,7 +45,6 @@ export class MainPage implements OnInit {
 
    sliderConfig = {
       spaceBetween: 10,
-      centeredSlides: true,
       initialSlide: 0,
       slidesPerView: 1,
       autoplay:true,

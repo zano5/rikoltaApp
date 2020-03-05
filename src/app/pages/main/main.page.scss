@@ -10,28 +10,33 @@
     flex-flow: row wrap;
     justify-content: space-around;
 }
+.cont{
+    border-radius:5px;
+  
+   width: 100%;
+}
 
 .flex-item-right {
-    width: 150px;
+  
     height: 120px;
     color: black;
     font-weight: bold;
     font-size: 3em;
     text-align: center;
-    right: -100px;
+
     opacity: 0;
     animation: cardShowRight 1s forwards;
     animation-delay: 0.5s;
 }
 
 .flex-item-left {
-    width: 150px;
+  
     height: 120px;
     color: black;
     font-weight: bold;
     font-size: 3em;
     text-align: center;
-    left: -100px;
+ 
     opacity: 0;
     animation: cardShowLeft 1s forwards;
     animation-delay: 0.5s;
@@ -40,6 +45,7 @@
 .icons {
     color: #38aadf;
     transform: translateY(50%);
+    // margin-right: 3%;
 }
 
 .cardText {
@@ -61,3 +67,44 @@
         opacity: 1;
     }
 }
+/* Extra small devices (phones, 600px and down) */
+// @media only screen and (max-width: 600px) {
+//     .cont {
+//     width: 350px;
+//       border-radius:5px;
+//     }
+//   }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+//   @media only screen and (min-width: 600px) {
+//     .cont {
+//         width: 350px;
+//       border-radius:5px;
+//     }
+//   }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+//   @media only screen and (min-width: 992px) {
+//     .cont {
+//         width: 868px;
+      
+//     }
+//   } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+//   @media only screen and (min-width: 992px) {
+//     .cont {
+      
+//       border-radius:1px;
+
+//     }
+//   } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+//   @media only screen and (min-width: 1200px) {
+//     .cont {
+   
+//       border-radius:1px;
+        
+//     }
+//   }

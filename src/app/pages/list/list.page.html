@@ -1,12 +1,22 @@
 <ion-header>
     <ion-toolbar color="dark">
-        <ion-buttons slot="start">
+        <ion-buttons  slot="start">
             <ion-menu-button>
             </ion-menu-button>
+          
         </ion-buttons>
         <ion-title> Claims</ion-title>
     </ion-toolbar>
 </ion-header>
+<!-- >>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- <ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons style="color:white" slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Purchase</ion-title>
+    </ion-toolbar>
+</ion-header> -->
 <ion-content text-center>
     <form [formGroup]="ionicForm" novalidate>
         <ion-list text-left style="margin: 0.5em;" padding>
@@ -14,6 +24,15 @@
             <ion-item lines="full">
                 <ion-input maxlength="13" formControlName="id" type="text" required placeholder=" Policy holder RSA ID" form="id"></ion-input>
             </ion-item>
+            <div class="image-upload" float-right>
+                <label for="file-input"> 
+                            <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
+                        <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
+                    
+                <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+                  </label>
+            </div>
+            <br>
             <span class="error ion-padding" *ngIf="ionicForm.get('id').hasError('required') && ionicForm.get('id').touched ">
                 Please enter your ID
               </span>
@@ -34,6 +53,19 @@
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('required') && ionicForm.get('name').touched">
                 Please enter your name
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('minlength')">
+                Name should be atleast 2 chars long.
+            </span> <br>
+            <label>Surname</label>
+            <ion-item lines="full">
+                <ion-input formControlName="surname" type="text" required placeholder="Claimant Full name"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('pattern')">
+                Name must be only chars
+              </span>
+            <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('required') && ionicForm.get('name').touched">
+                Please enter your Surname
               </span>
             <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('minlength')">
                 Name should be atleast 2 chars long.

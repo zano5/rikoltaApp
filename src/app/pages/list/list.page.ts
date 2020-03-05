@@ -58,7 +58,8 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
     this.ionicForm = this.FormBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]], 
+      name: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]],
+      surname: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]],
       mobile: ['', [Validators.required,Validators.minLength(10), Validators.pattern('^[0-9]+$')]],
       mobile2: ['', [Validators.required,Validators.minLength(10), Validators.pattern('^[0-9]+$')]],  
       id: ['', [Validators.required,Validators.minLength(13), Validators.pattern('^[0-9]+$')]],
@@ -138,6 +139,7 @@ export class ListPage implements OnInit {
           ClaimNumber:Math.floor(100000 + Math.random() * 900000),
          ID: this.ionicForm.value.id,
          ClaimentName: this.ionicForm.value.name,
+         Surname:this.ionicForm.value.surname,
           Number: this.ionicForm.value.mobile,
           AltNumber: this.ionicForm.value.mobile2,
           userid: this.afAuth.auth.currentUser.uid,

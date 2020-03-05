@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "design1",
+  "appId": "com.codeup.rikoltla",
+  "appName": "Rikolta",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.codeup.rikoltla;
 
 import android.os.Bundle;
 

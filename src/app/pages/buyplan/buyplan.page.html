@@ -1,8 +1,7 @@
 <ion-header>
     <ion-toolbar color="dark">
         <ion-buttons style="color:white" slot="start">
-            <ion-back-button>
-            </ion-back-button>
+          <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>Purchase</ion-title>
     </ion-toolbar>
@@ -56,6 +55,15 @@
                 <!-- <ion-icon name="card"></ion-icon>&nbsp; -->
                 <ion-input type="tel" maxlength="13" formControlName="ID" required placeholder="RSA ID"></ion-input>
             </ion-item>
+            <div class="image-upload" float-right>
+              <label for="file-input"> 
+                          <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
+                      <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
+                  
+              <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+                </label>
+          </div>
+          <br>
             <span class="error ion-padding" *ngIf="ionicForm.get('ID').hasError('required') && ionicForm.get('ID').touched ">
               Please enter your ID
             </span>
@@ -75,10 +83,20 @@
                 <ion-input formControlName="addresszipcode" placeholder="Zip Code"></ion-input>
             </ion-item>
             <label>Monthly Income</label>
+            
             <ion-item>
                 <!-- <ion-icon name="cash"></ion-icon>&nbsp; -->
                 <ion-input type="tel" formControlName="income" required placeholder="Monthly Income"></ion-input>
+           
             </ion-item>
+            <div class="image-upload" float-right>
+              <label for="file-input"> 
+                          <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
+                      <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
+                  
+              <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+                </label>
+          </div>
             <span class="error ion-padding" *ngIf="ionicForm.get('income').hasError('minlength')">
               Income must be atleast 3 chars long
             </span>
@@ -92,6 +110,7 @@
         <ion-button style="width: 50%;" [disabled]="!ionicForm.valid" color="dark" (click)="Next()">Next</ion-button>
     </form>
     <form [formGroup]="membersForm" *ngIf="form == 2">
+      <h1> Add Members</h1>
         <ion-list text-left formArrayName="members" *ngIf="form == 2" padding>
             <ion-list [formGroupName]="i" *ngFor="let member of membersForm.controls.members.controls; let i = index">
                 <label>Full name</label>
@@ -111,6 +130,14 @@
                 <ion-item>
                     <ion-input maxlength="13" type="text" formControlName="memberID" placeholder="RSA ID"></ion-input>
                 </ion-item>
+                <div class="image-upload" float-right>
+                  <label for="file-input"> 
+                              <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
+                          <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
+                      
+                  <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+                    </label>
+              </div>
                 <span class="error ion-padding" *ngIf="member.controls.memberID.hasError( 'minlength')">
                   *ID should be atleast 13 digits long
                 </span>
