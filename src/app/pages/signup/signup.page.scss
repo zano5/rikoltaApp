@@ -27,18 +27,44 @@
                                   
     
 }
-// @media only screen and (min-width: 600px) {
-//     /* For tablets: */
-//     .col-s-1 {width: 8.33%;}
-//     .col-s-2 {width: 16.66%;}
-//     .col-s-3 {width: 25%;}
-//     .col-s-4 {width: 33.33%;}
-//     .col-s-5 {width: 41.66%;}
-//     .col-s-6 {width: 50%;}
-//     .col-s-7 {width: 58.33%;}
-//     .col-s-8 {width: 66.66%;}
-//     .col-s-9 {width: 75%;}
-//     .col-s-10 {width: 83.33%;}
-//     .col-s-11 {width: 91.66%;}
-//     .col-s-12 {width: 100%;}
-//   }
+
+
+body
+{
+  
+    align-items: center;
+   justify-content: center;
+   align-content: center; 
+   background-image: linear-gradient(rgba(0, 0, 128, 0.329), rgba(0, 0, 128, 0.329),rgba(0, 0, 128, 0.315)),url("https://images.pexels.com/photos/3206123/pexels-photo-3206123.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"); 
+background-size: cover;
+background-repeat: no-repeat;
+height: 100vh;
+padding-top:19% ;
+}
+
+
+ion-item {
+    --background: rgba(0,0,0,0);
+    --border-color: rgba(255, 255, 255, 0.979);
+}
+.bg-transparent {
+    background: transparent;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+
+  #card{
+    -webkit-box-shadow: 1px 2px 15px 9px rgba(0,0,0,1);
+    -moz-box-shadow: 1px 2px 15px 9px rgba(0,0,0,1);
+    box-shadow: 1px 2px 15px 9px rgba(0,0,0,1);
+    background: rgba(0, 0, 0, 0.363); 
+      width: 90%;
+      align-content: center;
+      text-align: center;
+      justify-content: center;
+      margin: auto;
+      height:90%;
+  }

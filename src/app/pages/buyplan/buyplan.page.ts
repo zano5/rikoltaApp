@@ -59,6 +59,7 @@ export class BuyplanPage implements OnInit {
 
   ngOnInit() { 
     this.activatedRoute.params.subscribe((data) =>{
+      console.log(data)
       this.pricePlan = data.plan;
       if(this.pricePlan == 'Standard Plan'){
          for (let index = 1; index <= 10; index++) {
@@ -80,7 +81,7 @@ export class BuyplanPage implements OnInit {
     })
     this.ionicForm = this.FormBuilder.group({
       Fullname: ['', [Validators.required, Validators.minLength(2),Validators.pattern('[a-zA-Z ]*')]],
-      email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]], 
+      email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]], 
       mobilenumber: ['', [Validators.required, Validators.minLength(10),Validators.pattern('^[0-9]+$')]],
       income: ['', [Validators.required, Validators.minLength(3),Validators.pattern('^[0-9]+$')]],
       ID: ['', [Validators.required, Validators.minLength(13),Validators.pattern('^[0-9]+$')]],

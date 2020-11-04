@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
-.center {
-    $display: block;
-    display: $display;
-    $margin-left: auto;
-    margin-left: $margin-left;
-    $margin-right: auto;
-    margin-right: $margin-right;
-    $width: 50%;
-    width: $width;
-}
+
 
 .error {
     color: red;
@@ -29,3 +20,89 @@
         width: $width;
     }
 }
+
+
+.form
+{
+    background:white;
+   margin-top: 30%;
+   height:85%;
+align-items: center;
+   justify-content: center;
+   align-content: center;
+   width:90%;
+margin: auto;
+-webkit-box-shadow: 1px 2px 15px 9px rgba(0,0,0,1);
+-moz-box-shadow: 1px 2px 15px 9px rgba(0,0,0,1);
+box-shadow: 1px 2px 15px 9px rgba(0,0,0,1);
+background: rgba(0, 0, 0, 0.363); 
+
+}
+.inform
+{
+    
+    align-items: center;
+   justify-content: center;
+   align-content: center;
+  
+}
+body
+{
+    padding-top: 30%;
+    align-items: center;
+   justify-content: center;
+   align-content: center; 
+   background-image: linear-gradient(rgba(0, 0, 128, 0.329), rgba(0, 0, 128, 0.329),rgba(0, 0, 128, 0.315)),url("https://images.pexels.com/photos/3206076/pexels-photo-3206076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
+background-size: cover;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+#cent
+{
+   
+    height:120px;
+    background: rgba(18, 6, 71, 0); 
+    
+}
+
+.errspan {
+    float: right;
+    margin-right: 6px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    color: red;
+}
+#filtersubmit {
+    position: relative;
+    z-index: 1;
+    left: -25px;
+    top: 1px;
+    color: #7B7B7B;
+    cursor: pointer;
+    width: 0;
+  }
+input
+{
+    background: rgba(109, 189, 243, 0.295);
+    color: white;
+    border-style: inset;
+    border-width:2px;
+    width: 80%;
+    
+    height:35px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+
+  ion-item {
+    --background: rgba(0,0,0,0);
+    --border-color: rgb(255, 255, 255);
+}
+.bg-transparent {
+    background: transparent;
+  }

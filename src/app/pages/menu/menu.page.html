@@ -1,6 +1,6 @@
 <ion-menu contentId="main-content" type="overlay">
     <ion-header text-center>
-        <ion-toolbar color="dark">
+        <ion-toolbar color="primary">
             <ion-title>Menu</ion-title>
         </ion-toolbar>
     </ion-header>
@@ -10,7 +10,7 @@
 
             <ion-menu-toggle auto-hide="true" *ngIf="p.url">
                 <ion-item routerDirection="root" [routerLink]="[p.url]" routerLinkActive="active">
-                    <ion-icon slot="start" [name]="p.icon" color="medium"></ion-icon>
+                    <ion-icon slot="start" [name]="p.icon" color="primary"></ion-icon>
                     <ion-label style="font-weight: bold;">
                         {{p.title}}
                     </ion-label>
@@ -22,7 +22,7 @@
     <ion-footer>
 
         <ion-item (click)="logOut()">
-            <ion-icon name="power" color="medium"></ion-icon>&nbsp;&nbsp;&nbsp;
+            <ion-icon name="power" color="primary"></ion-icon>&nbsp;&nbsp;&nbsp;
             <ion-label style="font-weight: bold;">Sign out</ion-label>
         </ion-item>
 

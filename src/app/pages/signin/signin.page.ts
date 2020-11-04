@@ -77,7 +77,7 @@ export class SigninPage implements OnInit {
   SingIn(){  
 
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).then((user) =>{
-      this.router.navigateByUrl('/menu/main') 
+      this.router.navigateByUrl('/newhome') ;
       this.presentToast('Successfully signed in');
       this.loginForm.reset();   
       // var userid = this.authService.getUID();  
@@ -119,8 +119,8 @@ export class SigninPage implements OnInit {
   Cancel(){
     this.isForgotPassword = true;
   }
-  reset() {
-    this.authService.sendPasswordResetEmail(this.forgotpasswordForm.value.email)
+  reset(password) {
+    this.authService.sendPasswordResetEmail(password)
     .then((success)=>{
       this.alertCtrl.create({
         // message: 'You can not order more than six',
@@ -138,6 +138,46 @@ export class SigninPage implements OnInit {
       );
     })  
   }
+
+async presentReset() {
+this.angularFireAuth.authState.subscribe(res=>{
+  console.log(res.email)
+ 
+})
+
+    const alert = await this.alertCtrl.create({
+     
+      header: 'Reset password',
+      inputs: [
+        {
+          name: 'email',
+          type: 'text',
+          placeholder: 'Enter your email address.'
+        },
+],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (res) => {
+            console.log('Confirm Ok');
+            console.log(res.email);
+            this.reset(res.email)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
   showMessage(type, msg) {
     this.responseMessageType = type;
     this.responseMessage = msg;

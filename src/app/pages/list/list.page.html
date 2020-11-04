@@ -1,5 +1,5 @@
-<ion-header>
-    <ion-toolbar color="dark">
+<!-- <ion-header>
+    <ion-toolbar color="primary">
         <ion-buttons  slot="start">
             <ion-menu-button>
             </ion-menu-button>
@@ -7,32 +7,18 @@
         </ion-buttons>
         <ion-title> Claims</ion-title>
     </ion-toolbar>
-</ion-header>
-<!-- >>>>>>>>>>>>>>>>>>>>>>> -->
-<!-- <ion-header>
-    <ion-toolbar color="dark">
-        <ion-buttons style="color:white" slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title>Purchase</ion-title>
-    </ion-toolbar>
 </ion-header> -->
+
 <ion-content text-center>
     <form [formGroup]="ionicForm" novalidate>
         <ion-list text-left style="margin: 0.5em;" padding>
-            <label>RSA ID</label>
-            <ion-item lines="full">
-                <ion-input maxlength="13" formControlName="id" type="text" required placeholder=" Policy holder RSA ID" form="id"></ion-input>
+         
+            <ion-item lines="none">
+                <label position="fixed">RSA ID</label>
+                <ion-input maxlength="13" formControlName="id" type="text" required  form="id"></ion-input>
             </ion-item>
-            <div class="image-upload" float-right>
-                <label for="file-input"> 
-                            <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
-                        <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
-                    
-                <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
-                  </label>
-            </div>
-            <br>
+           
+           
             <span class="error ion-padding" *ngIf="ionicForm.get('id').hasError('required') && ionicForm.get('id').touched ">
                 Please enter your ID
               </span>
@@ -43,10 +29,11 @@
                 ID must be digits
               </span>
             <br>
-            <label>Full Name</label>
+           
             <ion-item lines="full">
-                <!-- <ion-icon name="person"></ion-icon>&nbsp; -->
-                <ion-input formControlName="name" type="text" required placeholder="Claimant Full name"></ion-input>
+                <label>Full Name </label>
+               
+                <ion-input formControlName="name" type="text" required ></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('pattern')">
                 Name must be only chars
@@ -57,9 +44,10 @@
             <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('minlength')">
                 Name should be atleast 2 chars long.
             </span> <br>
-            <label>Surname</label>
+          
             <ion-item lines="full">
-                <ion-input formControlName="surname" type="text" required placeholder="Claimant Full name"></ion-input>
+                <label>Surname </label>
+                <ion-input formControlName="surname" type="text" required ></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('pattern')">
                 Name must be only chars
@@ -70,10 +58,10 @@
             <span class="error ion-padding" *ngIf="ionicForm.get('name').hasError('minlength')">
                 Name should be atleast 2 chars long.
             </span> <br>
-            <label>Mobile Number</label>
+           
             <ion-item lines="full">
-                <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input maxlength="10" formControlName="mobile" type="tel" required placeholder="Claimant Mobile Number"></ion-input>
+                <label>Mobile Number </label>
+                <ion-input maxlength="10" formControlName="mobile" type="tel" required></ion-input>
             </ion-item>
             <span class="error ion-padding" *ngIf="ionicForm.get('mobile').hasError('required') && ionicForm.get('mobile').touched">
                 Please enter number
@@ -82,58 +70,39 @@
                 Only numerical values allowed.
               </span>
             <br>
-            <label>Alternative Number</label>
+            
             <ion-item lines="full">
-                <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-                <ion-input maxlength="10" formControlName="mobile2" type="tel" placeholder="Claimant Alternative number"></ion-input>
+                <label>Alternative Number </label>
+                <ion-input maxlength="10" formControlName="mobile2" type="tel"></ion-input>
             </ion-item>
-            <!-- <span class="error ion-padding" *ngIf="ionicForm.get('mobile2').hasError('required') && ionicForm.get('mobile2').touched">
-                Please enter alternative number
-              </span>
-            <span class="error ion-padding" *ngIf="ionicForm.get('mobile2').hasError('pattern')">
-                Only numerical values allowed.
-              </span> -->
+
             <br>
-            <!-- <ion-item>
-            <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;
-            <ion-input type="file" required></ion-input>
-        </ion-item>  -->
-            <label>Death Certificate</label>
-            <ion-item>
+       
+           
+ <ion-item>
+    <div class="image-upload" float-right>
+        
+        <label for="file-input">Claimant ID </label> 
+        <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
+         
+    </div>
+ </ion-item>
+            <br>
+            
+<ion-item>
                 <div class="image-upload" float-right>
-                    <label for="file-input"> 
-                                <!-- <ion-icon name="cloud-upload"></ion-icon>&nbsp;Certificate &nbsp;  -->
-                            <!-- <ion-icon class="input" name="attach"> </ion-icon>  -->
-                        
+                    <label for="file-input"> Death Certificate</label>
                     <input id="file-input" class="input" type="file" (change)="upload($event)" /> 
-                      </label>
                 </div>
-            </ion-item>
-            <br>
-            <!-- <label>Menu Selection</label>
-            <ion-item lines="full"> -->
-            <!-- <ion-icon name="call"></ion-icon>&nbsp; -->
-            <!-- <ion-input type="text" (click)="presentModal()">{{lunch | json}}{{refreshments | json}}</ion-input>
-            </ion-item> -->
+            </ion-item>    
+
+
         </ion-list>
-        <!-- <table *ngIf="hide" padding>
-            <tr>
-                <th>Lunch</th>
-                <th>Refreshments</th>
-            </tr>
-            <tr>
-                <td>{{lunch | json}}</td>
-                <td>{{refreshments | json}}</td>
-            </tr>
-        </table> -->
+
         <ion-row>
             <ion-col>
-                <ion-button type="submit" style="width: 50%" [disabled]="!ionicForm.valid" color="dark" (click)="submit()">Submit</ion-button>
+
+                <ion-button type="submit" expand="full" fill="outline" (click)="toClaims()" [disabled]="!ionicForm.valid" (click)="submit()" >SUBMIT</ion-button>
             </ion-col>
         </ion-row>
     </form>
-    <!-- </ion-content> -->
-    <!-- 
-<ion-footer text-center style="border: none;">
-    <ion-button type="submit" style="text-transform: none;color: white;width: 50%;" color="medium" >Submit</ion-button>
-</ion-footer> -->

@@ -1,125 +1,42 @@
 <ion-header>
-    <ion-toolbar color="dark">
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+    <ion-toolbar color="primary">
+        <ion-buttons style="color:white" slot="start">
+          <ion-back-button>back</ion-back-button>
         </ion-buttons>
-        <ion-title>
-            Funeral Cover
-        </ion-title>
+        <ion-title>Select Plan</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" >
-    <ion-slides class="cont" [options]="sliderConfig" pager="true" >
-
-        <ion-slide  style="width:100%;">
-            <img  src="../../../assets/images/funeral2.jpg" style="width:100%;">
+<ion-content >
+    <ion-slides class="cont" [options]="sliderConfig" pager="true" (ionSlideTap)="getIndex($event)">
+     
+           
+      
+        <ion-slide  id="aa" (click)="cc(11)">
+    
+            <img  src="../../../assets/images/Standard_Plan.jpg" style="width:100%;">
+            
+            <p style ="color:#02004d">-Covers up to 10 people  </p>
+            <p style ="color:#02004d">-Pays out in 24 hours</p>
+            <p style="color:#02004d">-Includes grocery and catering</p>
         </ion-slide>
-        <ion-slide style="width:100%;">
-            <img  src="../../../assets/images/cry.jpg"  style="width:100%;">
+        <ion-slide style="width:100%;" id="bb" (click)="cc(22)">
+            <img  src="../../../assets/images/Premium_Plan.jpg"  style="width:100%;">
+           
+            <p style ="color:#02004d">-Covers up to 15 people  </p>
+            <p style ="color:#02004d">-Pays out in 24 hours</p>
+            <p style="color:#02004d">-Includes grocery and catering</p>
+          
         </ion-slide>
-        <ion-slide style="width:100%;">
-            <img  src="../../../assets/images/Slide.png"  style="width:100%;">
-        </ion-slide>
+      
     </ion-slides>
 
 
-    <!-- <ion-row class="flex-container">
-        <ion-col>
-            <ion-card class="flex-item-left" (click)="toClaims()">
-                <ion-col>
-                    <ion-icon name="book" class="icons"></ion-icon><br>
-                    <ion-label class="cardText">Claims</ion-label>
-                </ion-col>
-            </ion-card>
-        </ion-col>
-        <ion-col>
-            <ion-card class="flex-item-right" (click)="toApply()">
-                <ion-col>
-                    <ion-icon md="md-cart" class="icons"></ion-icon>
-                    <br>
-                    <ion-label class="cardText">Apply</ion-label>
-                </ion-col>
-            </ion-card>
-        </ion-col>
-        <ion-col>
-            <ion-card class="flex-item-left" (click)="toContact()">
-                <ion-col>
-                    <ion-icon name="call" class="icons"></ion-icon>
-                    <br>
-                    <ion-label class="cardText">Contact</ion-label>
-                </ion-col>
-            </ion-card>
-        </ion-col>
-        <ion-col>
-            <ion-card class="flex-item-right" (click)="toHelp()">
-                <ion-col>
-                    <ion-icon md="md-help" class="icons"></ion-icon>
-                    <br>
-                    <ion-label class="cardText">Help</ion-label>
-                </ion-col>
+    
 
-            </ion-card>
-        </ion-col>
-    </ion-row> -->
-
-<div >
-    <ion-row>
-
-        <ion-col size="12" size-xs="6"  size-sm="6" size-md="6"  lg="3" xl="3">
-            <ion-card class="flex-item-left" (click)="toClaims()">
-                <ion-col>
-                    <ion-icon name="book" class="icons"></ion-icon><br>
-                    <ion-label class="cardText">Claims</ion-label>
-                </ion-col>
-            </ion-card>
-
-        </ion-col>
-
-        <ion-col size="12"size-xs="6" size-sm="6" size-md="6" lg="3" xl="3">
-
-            <ion-card class="flex-item-right" (click)="toApply()">
-                <ion-col>
-                    <ion-icon name="md-cart" class="icons"></ion-icon>
-                    <br>
-                    <ion-label class="cardText">Apply</ion-label>
-                </ion-col>
-            </ion-card>
-
-
-
-        </ion-col>
-       
-
-        <ion-col size="12" size-xs="6" size-sm="6" size-md="6"  lg="3" xl="3">
-
-            <ion-card class="flex-item-left" (click)="toContact()">
-                <ion-col>
-                    <ion-icon name="call" class="icons"></ion-icon>
-                    <br>
-                    <ion-label class="cardText">Contact</ion-label>
-                </ion-col>
-            </ion-card>
-
-
-        </ion-col>
-
-        <ion-col size="12" size-xs="6" size-sm="6" size-md="6"  lg="3" xl="3">
-
-            <ion-card class="flex-item-right" (click)="toHelp()">
-                <ion-col>
-                    <ion-icon name="md-help" class="icons"></ion-icon>
-                    <br>
-                    <ion-label class="cardText">Help</ion-label>
-                </ion-col>
-
-            </ion-card>
-
-
-
-        </ion-col>
-
-    </ion-row>
+<div style ="padding-top:100px" >
+      
+<!-- <ion-button expand="full" fill="outline" (click)="details()" > Details</ion-button> -->
 
 </div>
-</ion-content>
+</ion-content> 

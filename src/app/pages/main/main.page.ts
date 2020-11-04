@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { Router } from '@angular/router'; 
+import { IonSlides } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth'; 
 import * as firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/service/auth.service';
 import { PagesService, User } from 'src/app/service/pages.service';
 import { Observable } from 'rxjs';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
 })
+
 export class MainPage implements OnInit {
+  @ViewChild('sliderRef', { static: true }) protected slider: IonSlides
+
   users = [];
   pages = []; 
   private data:Observable<User[]>; 
@@ -22,20 +28,7 @@ export class MainPage implements OnInit {
    }
 
   ngOnInit() {
-    // console.log('Landing page....');
-    // this.data = this.pagesService.getUsers();
-    // console.log(this.data); 
-    // var userid = this.authService.getUID();  
-    // console.log(userid);
-    // this.data.subscribe(value => {
-    //   value.forEach(element => {
-    //     console.log(element.ID);
-    //      if (userid == element.ID && element.plan != "none" && this.pages.length == 5) {
-    //       console.log('add it'+element.plan+' '+userid);
-    //       this.pages.push({title:'Policy',url:'/menu/policy',icon:'book'}) 
-    //     }
-    //   })
-    // });
+
   } 
   ionViewWillEnter(){
 
@@ -44,7 +37,7 @@ export class MainPage implements OnInit {
   // ---------------------------------------------------
 
    sliderConfig = {
-      spaceBetween: 10,
+      spaceBetween: 0,
       initialSlide: 0,
       slidesPerView: 1,
       autoplay:true,
@@ -217,4 +210,27 @@ export class MainPage implements OnInit {
     this.route.navigateByUrl('menu/help');
   }
 
+cc(x)
+{
+  console.log(x)
+  // this.route.navigateByUrl('buyplan')
+
+  if(x ==11)
+  {
+  this.route.navigate(["/buyplan",{plan:"Standard Plan"}]);
+  }
+  else
+  {
+    this.route.navigate(["/buyplan",{plan:"Premium Plan"}]);
+  }
 }
+ async getIndex(x)
+  {
+    console.log(x)
+  //  await this.slides.nativeElement.getActiveIndex().then(res=>{
+      console.log(this.slider)
+    // })
+  }
+}
+
+
