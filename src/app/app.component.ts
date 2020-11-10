@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-// import { AuthService } from 'src/app/service/auth.service'; 
+import { Router } from '@angular/router'; 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -22,14 +23,30 @@ export class AppComponent {
   // userDetails: any;
 
   constructor(
-    // private authService: AuthService,
+   private route:Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
     this.initializeApp();
-    // this.selectedVal = 'login';
-    // this.isForgotPassword = false;
+   
+  }
+
+  ionViewDidLoad()
+  {
+console.log("Will Load")
+
+firebase.auth().onAuthStateChanged(res=>{
+  console.log("I am here",res.email)
+  if(res)
+  {
+this.route.navigateByUrl('newhome')
+  }
+  else
+  {
+    this.route.navigateByUrl('signin')
+  }
+})
   }
 
   initializeApp() {
