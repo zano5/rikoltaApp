@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
+
 
 
 @Component({
@@ -11,25 +15,12 @@ import { Router } from '@angular/router';
 })
 export class NewhomePage implements OnInit {
 
-  userplan ={}
-  constructor(public alertController: AlertController,private route: Router ) {
+  userplan:any ={}
+
+  constructor(public toastController: ToastController,public actionSheetController: ActionSheetController,public loadingController: LoadingController,public alertController: AlertController,private route: Router ) {
 
 // var uid = firebase.auth().currentUser.uid
 
-    firebase.firestore().collection("users").where("userid","==","13uvM2yc90PcQFIdEcolt0bjs772").get().then(res=>{
-      res.forEach(val=>{
-
-        
-     
-        this.userplan=val.data()
-        console.log(this.userplan)
-
-        if(val.data().plan =="none")
-        {
-          this.checkplan()
-        }
-      })
-    })
   }
 
 
@@ -37,7 +28,32 @@ export class NewhomePage implements OnInit {
 
     
   }
+ionViewDidEnter()
+{
+  console.log("Entered")
+  firebase.firestore().collection("Purchase").get().then(res=>{
+    
+    console.log(res)
 
+    res.forEach(val=>{
+
+      
+   
+      this.userplan=val.data()
+      console.log(this.userplan)
+      console.log(val.data().BuyerUserID)
+
+      if(val.data().BuyerUserID==firebase.auth().currentUser.uid)
+      {
+        this.checkplan()
+        this.userplan=val.data()
+   
+      }
+    })
+
+  })
+
+}
   async checkplan()
 {
 
@@ -87,17 +103,153 @@ await alert.present();
 }
 
 
-toClaims(){
-  this.route.navigateByUrl('menu/list');
+async toClaims(){
+ 
+
+  const loading = await this.loadingController.create({
+    duration: 5000,
+    spinner:"bubbles",
+    message:"Please Wait..."
+     });
+     await loading.present();
+   
+     const { role, data } = await loading.onDidDismiss();
+
+  firebase.firestore().collection("Approved Purchases").get().then(res=>{
+  
+    res.forEach(async val=>{
+      
+    console.log(val.data())
+     
+       if(val.data().data.BuyerUserID==firebase.auth().currentUser.uid)
+    {
+      this.route.navigateByUrl('menu/list');
+    
+   }
+     
+  else{
+   
+ 
+
+
+    const alert = await this.alertController.create({
+      message: 'You don\'t have a funeral plan yet. You need to apply for a plan and wait for its approval.',
+     buttons: ['OK']
+   });
+ 
+   await alert.present();
+  }  
+  
+  })
+  })
+
+
+
+
 }
-toApply(){
+async toApply(){
+  console.log("Apply")
+
+  console.log(this.userplan.BuyerUserID==firebase.auth().currentUser.uid)
+
+  
+  const loading = await this.loadingController.create({
+    duration: 5000,
+    spinner:"bubbles",
+    message:"Please Wait..."
+     });
+     await loading.present();
+   
+     const { role, data } = await loading.onDidDismiss();
+     if((this.userplan.BuyerUserID==firebase.auth().currentUser.uid))
+     {
+       this.checkplan()
+     }
+     else{
+firebase.firestore().collection("Approved Purchases").get().then(res=>{
+  console.log(res.empty)
+if(res.empty)
+{
   this.route.navigateByUrl('menu/main');
+}
+
+
+  res.forEach(async val=>{
+    
+  console.log(val.data())
+   
+     if(val.data().data.BuyerUserID==firebase.auth().currentUser.uid)
+  {
+
+    const alert = await this.alertController.create({
+      message: 'You already have a funeral plan.',
+     buttons: ['OK']
+   });
+ 
+   await alert.present();
+ }
+   
+else{
+ 
+  this.route.navigateByUrl('menu/main');
+}  
+
+})
+})
+}
+ 
 }
 toContact(){
   this.route.navigateByUrl('menu/contact');
 }
 toHelp(){
   this.route.navigateByUrl('menu/help');
+}
+
+
+async presentLoading() {
+  const loading = await this.loadingController.create({
+ duration: 5000,
+ spinner:"bubbles",
+ message:"Please Wait..."
+  });
+  await loading.present();
+
+  const { role, data } = await loading.onDidDismiss();
+  console.log('Loading dismissed!');
+}
+
+
+
+async presentActionSheet() {
+ 
+  const toast = await this.toastController.create({
+  
+    message: 'Sign out?',
+    position: 'top',
+    color:"primary",
+    buttons: [
+      {
+        side: 'end',
+        icon: 'log-out',
+        text: 'Yes',
+        
+        handler: () => {
+          firebase.auth().signOut()
+          this.route.navigateByUrl('signin')
+        }
+      }, {
+        text: 'No',
+        role: 'cancel',
+        icon: 'close',
+        handler: () => {
+          console.log('Cancel clicked');
+
+      }}
+    ]
+  });
+  toast.present();
+
 }
 
 
