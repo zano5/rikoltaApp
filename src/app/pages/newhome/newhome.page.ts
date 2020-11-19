@@ -16,6 +16,7 @@ import { ActionSheetController } from '@ionic/angular';
 export class NewhomePage implements OnInit {
 
   userplan:any ={}
+  button1:string="Apply";
 
   constructor(public toastController: ToastController,public actionSheetController: ActionSheetController,public loadingController: LoadingController,public alertController: AlertController,private route: Router ) {
 
@@ -31,83 +32,50 @@ export class NewhomePage implements OnInit {
 ionViewDidEnter()
 {
   console.log("Entered")
-  firebase.firestore().collection("Purchase").get().then(res=>{
+  firebase.firestore().collection("Approved Purchases").where("data.BuyerUserID","==","13uvM2yc90PcQFIdEcolt0bjs772").get().then(res=>{
     
     console.log(res)
 
-    res.forEach(val=>{
+    if(res.empty)
+    {
+
+    }
+    else{
+      console.log("false")
+
+      this.button1="Policy"
+
+
+      res.forEach(val=>{
 
       
    
-      this.userplan=val.data()
-      console.log(this.userplan)
-      console.log(val.data().BuyerUserID)
-
-      if(val.data().BuyerUserID==firebase.auth().currentUser.uid)
-      {
-        this.checkplan()
         this.userplan=val.data()
-   
-      }
-    })
+        console.log(this.userplan)
+        console.log(val.data().BuyerUserID)
+  
+        if(val.data().BuyerUserID==firebase.auth().currentUser.uid)
+        {
+         
+          this.userplan=val.data()
+     
+        }
+      })
+    }
+
+
 
   })
 
 }
-  async checkplan()
-{
 
-  const alert = await this.alertController.create({
-    header: 'Confirm!',
-    message: 'You do not have a plan, would you like to browse plans?',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: (blah) => {
-          console.log('Confirm Cancel: blah');
-        }
-      }, {
-        text: 'Okay',
-        handler: () => {
-          this.route.navigateByUrl('menu/main');
-        }
-      }
-    ]
-  });
-var valu:boolean;
-  firebase.firestore().collection('Purchase').where("BuyerEmail","==","fumanizondo@gmail.com").get().then(res=>{
-    res.forEach(val=>{
-      console.log(val.exists)
-      valu =val.exists
-    })
-  })
-
-  if(valu==true)
-  {
-await alert.present();
-  }
-  else{
-    const alert = await this.alertController.create({
-    header:"Notification",
-      message: 'Your purchase is still under evaluation, please be patient.',
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
-  // await alert.present();
-
-}
 
 
 async toClaims(){
  
 
   const loading = await this.loadingController.create({
-    duration: 5000,
+    duration: 4000,
     spinner:"bubbles",
     message:"Please Wait..."
      });
@@ -115,7 +83,19 @@ async toClaims(){
    
      const { role, data } = await loading.onDidDismiss();
 
-  firebase.firestore().collection("Approved Purchases").get().then(res=>{
+  firebase.firestore().collection("Approved Purchases").where("data.BuyerUserID","==",firebase.auth().currentUser.uid).get().then(async res=>{
+    console.log(res.empty)
+
+    if(res.empty)
+    {
+      const alert = await this.alertController.create({
+        message: 'You don\'t have a funeral plan yet. You need to apply for a plan and wait for its approval.',
+       buttons: ['OK']
+     });
+   
+     await alert.present();
+    }  
+    
   
     res.forEach(async val=>{
       
@@ -130,7 +110,7 @@ async toClaims(){
   else{
    
  
-
+console.log("else")
 
     const alert = await this.alertController.create({
       message: 'You don\'t have a funeral plan yet. You need to apply for a plan and wait for its approval.',
@@ -163,38 +143,43 @@ async toApply(){
      const { role, data } = await loading.onDidDismiss();
      if((this.userplan.BuyerUserID==firebase.auth().currentUser.uid))
      {
-       this.checkplan()
+       
      }
      else{
-firebase.firestore().collection("Approved Purchases").get().then(res=>{
-  console.log(res.empty)
-if(res.empty)
+firebase.firestore().collection("Approved Purchases").where("data.BuyerUserID","==",firebase.auth().currentUser.uid).get().then(async res=>{
+console.log(res.empty)
+
+if(!res.empty)
 {
-  this.route.navigateByUrl('menu/main');
+
+  console.log(this.userplan.data)
+  console.log(this.userplan.data.BuyerFullName)
+  console.log(this.userplan.data.BuyerPolicy)
+  console.log(this.userplan.data.BuyerAddress.addresscity)
+  console.log(this.userplan.data.BuyerMembers)
+  console.log(this.userplan.id)
+
+  const alert = await this.alertController.create({
+    message: 'PolicyHolder:'+this.userplan.data.BuyerFullName+'\n Policy Type:'+this.userplan.data.BuyerPolicy+'\n '+'Number of Members:'+this.userplan.data.BuyerMembers.length,
+   buttons: ['OK']
+ });
+
+ await alert.present();
 }
+ 
+else{
 
-
-  res.forEach(async val=>{
+this.route.navigateByUrl('menu/main');
+res.forEach(async val=>{
     
   console.log(val.data())
    
-     if(val.data().data.BuyerUserID==firebase.auth().currentUser.uid)
-  {
-
-    const alert = await this.alertController.create({
-      message: 'You already have a funeral plan.',
-     buttons: ['OK']
-   });
- 
-   await alert.present();
- }
-   
-else{
- 
-  this.route.navigateByUrl('menu/main');
-}  
+  
 
 })
+}  
+
+
 })
 }
  

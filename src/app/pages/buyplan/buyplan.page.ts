@@ -155,7 +155,7 @@ export class BuyplanPage implements OnInit {
 
     }).then(() => {
     this.presentPopover();
-    this.router.navigateByUrl('/menu/main');
+    this.router.navigateByUrl('/newhome');
    
   }).catch(err =>{
       alert(err.message)
