@@ -169,14 +169,31 @@ if(!res.empty)
  
 else{
 
-this.route.navigateByUrl('menu/main');
-res.forEach(async val=>{
+
+  firebase.firestore().collection("Purchases").where("BuyerUserID","==",firebase.auth().currentUser.uid).get().then(async res=>{
+if(res.empty)
+{
+  const alert = await this.alertController.create({
+    message: 'You don\'t have a funeral plan yet. Your application is still being processed.',
+   buttons: ['OK']
+ });
+
+ await alert.present();
+}
+else
+{
+  this.route.navigateByUrl('menu/main');
+}
+  })
+
+
+// res.forEach(async val=>{
     
-  console.log(val.data())
+//   console.log(val.data())
    
   
 
-})
+// })
 }  
 
 
