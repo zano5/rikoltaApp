@@ -171,16 +171,16 @@ else{
 
 
   firebase.firestore().collection("Purchases").where("BuyerUserID","==",firebase.auth().currentUser.uid).get().then(async res=>{
-if(res.empty)
-{
-  const alert = await this.alertController.create({
-    message: 'You don\'t have a funeral plan yet. Your application is still being processed.',
-   buttons: ['OK']
- });
+// if(res.empty)
+// {
+//   const alert = await this.alertController.create({
+//     message: 'You don\'t have a funeral plan yet. Your application is still being processed.',
+//    buttons: ['OK']
+//  });
 
- await alert.present();
-}
-else
+//  await alert.present();
+// }
+// else
 {
   this.route.navigateByUrl('menu/main');
 }
